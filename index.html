@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./common/common.css">
-    <title>Home</title>
-
+    <title>Document</title>
 </head>
 
 <body>
-    
+
     <header>
+
         <h1>
             Logic App
         </h1>
@@ -20,24 +20,49 @@
             <a href="./index.html">Home</a>
             <a href="./puzzles/index.html">Puzzles</a>
         </nav>
+
     </header>
+
     <main>
+
         <section>
+
             <content>
                 <p>
                     Logic app is a fun game!
                 </p>
             </content>
-            <form>
-                
+
+            <form id="newUser">
+                <label>
+                    <input name="name" placeholder="Enter Your Name" type="text">
+                </label>
+                    <label>
+                        <input type="radio" name="avatar" value="avatar-1"/>
+                        avatar 1
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar" value="avatar-2"/>
+                        avatar 2
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar" value="avatar-3" />
+                        Avatar 3
+                    </label>
+                    <button>Play!</button>
             </form>
+
         </section>
+
     </main>
+
     <footer>
         <a href="./about-devs/index.html">About the Devs</a>
     </footer>
-
+    
     <script type="module" src="app.js"></script>
+    <script type="module" src="./common/utils.js"></script>
+
 </body>
 
 </html>
