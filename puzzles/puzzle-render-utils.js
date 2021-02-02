@@ -72,34 +72,33 @@ export function generateEightTiles() {
 }
 
 export function getArrayOfRandomNumbers(array) {
-	let placementArray = [];
-	while (placementArray.length < array.length) {
-		let randomNumber = Math.floor(Math.random * array.length);
-		if (!placementArray.some(n => n === randomNumber) {
-			placementArray.push(randomNumber);
-		}
-		else {
-			randomNumber = Math.floor(Math.random * array.length);
-		}
-	}
+    let placementArray = [];
+	
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.floor(Math.random() * array.length);
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
+    }
+    return placementArray;
 }
 
 export function placeTilesRandomly() {
     const tileSpaces = generateThreeByThree();
     const tiles = generateEightTiles();
 
-	let placementArray = [];
-	while (placementArray.length < tileSpaces.length) {
-		let randomNumber = Math.floor(Math.random * tileSpaces.length);
-		if (!placementArray.some(n => n === randomNumber) {
-			placementArray.push(randomNumber);
-		}
-		else {
-			randomNumber = Math.floor(Math.random * tileSpaces.length);
-		}
-	}
+    let placementArray = [];
+    while (placementArray.length < tileSpaces.length) {
+        let randomNumber = Math.floor(Math.random * tileSpaces.length);
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
+        else {
+            randomNumber = Math.floor(Math.random * tileSpaces.length);
+        }
+    }
 
-	for (let tile of tiles) {
+    for (let tile of tiles) {
 		
-	}
+    }
 }
