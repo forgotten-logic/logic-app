@@ -68,11 +68,9 @@ export function generateEightTiles() {
         tiles[i].classList.add('tile');
         tiles[i].id = `${i + 1}`;
         tiles[i].textContent = `${i + 1}`;
-        tiles[i].addEventListener('click', () => {
-            
+        tiles[i].addEventListener('click', () => {            
             updateMovesCounter();
             setUserMoves();
-            console.log(`Someone clicked ${i + 1}`);
         });
     }
 
