@@ -1,15 +1,11 @@
 import { createUser } from './common/utils.js';
 
-const form = document.querySelector('form');
+const form = document.getElementById('newUser');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const formData = new FormData(form);
-    const user = createUser(formData);
-
-    const userStringified = JSON.stringify(user);
-    localStorage.setItem('USER', userStringified);
-
+    createUser(formData);
     window.location = '../index.html';
 });

@@ -1,11 +1,34 @@
+const USER = 'USER';
+
+export function pullFromLocStorage(key) {
+    
+    return JSON.parse(localStorage.getItem(key));
+
+}
+
+
 export function createUser(formData) {
-    const user = {
-        name: formData.get('name'),
-        avatar: formData.get('avatar'),
-        turns: 0,
-        gamesWon: 0,
-    };
-    return user;
+    let user = pullFromLocStorage(USER);
+    if (!formData.get('name') || !formData.get('avatar')) {
+        user = {
+            name: 'anonymous', 
+            avatar: 'booger',
+            moves: 0,
+            wins: 0
+        };
+        
+        localStorage.setItem(USER, JSON.stringify(user));
+        
+    } else {
+        
+        user = {
+            name: formData.get('name'),
+            avatar: formData.get('avatar'),
+            turns: 0,
+            gamesWon: 0,
+        };
+        localStorage.setItem(USER, JSON.stringify(user));
+    }
 }
 
 
