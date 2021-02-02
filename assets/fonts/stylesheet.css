@@ -3,9 +3,9 @@
 
 
 @font-face {
-    font-family: 'puzzleregular';
-    src: url('puzzle_font-webfont.woff2') format('woff2'),
-         url('puzzle_font-webfont.woff') format('woff');
+    font-family: 'typo_draft_demoregular';
+    src: url('typo_draft_demo-webfont.woff2') format('woff2'),
+         url('typo_draft_demo-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

@@ -17,11 +17,13 @@ main {
 }
 
 #menu {
-	background: #384D48;
+	background: rgb(56, 77, 72);
 	color: #FFF;
 	height: 45px;
 	padding-left: 18px;
 	border-radius: 10px;
+	font-family: 'typo_draft_demoregular';
+	font-size: 26px;
 }
 
 
@@ -49,7 +51,7 @@ main {
 	padding: 0 14px;
 	text-decoration: none;
 	color: #EBEBEB;
-	font-size: 15px;
+	font-size: 25px;
 }
 
 #menu li a:hover {
@@ -57,6 +59,12 @@ main {
 	background: #384D48;
 }
 
-.home-p {
-    --animate-duration: 4s;
+
+@font-face {
+    font-family: 'typo_draft_demoregular';
+    src: url('../assets/fonts/typo_draft_demo-webfont.woff2') format('woff2'),
+         url('../assets/fonts/typo_draft_demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }

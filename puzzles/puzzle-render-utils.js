@@ -30,12 +30,12 @@ export function generateThreeByThree() {
         pos9
     ];
 
-    // const tiles = generateEightTiles();
+    const tiles = generateEightTiles();
 
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
-        // if (tiles[i]) spaces[i].append(tiles[i]);
+        if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
     return spaces;
@@ -88,11 +88,11 @@ export function getArrayOfRandomNumbers(array) {
     return placementArray;
 }
 
-// export function placeTilesRandomly() {
-//     const tileSpaces = generateThreeByThree();
-//     const placements = getArrayOfRandomNumbers(tileSpaces);
+export function placeTilesRandomly() {
+    const tileSpaces = generateThreeByThree();
+    const placements = getArrayOfRandomNumbers(tileSpaces);
 
-// }
+}
 
 function setUserMoves() {
     const user = pullFromLocStorage(USER);

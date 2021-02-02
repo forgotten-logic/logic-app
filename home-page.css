@@ -1,8 +1,6 @@
 body {
     background-image: url(./assets/backgrounds/puzzle-background.jpg);
     image-rendering: auto;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
 }
 
 
@@ -13,6 +11,7 @@ h1 {
 .logic-logo {
     font-family: 'puzzleCryptoregular';
     margin: 10px;
+    margin-left: 1em;
     font-size: 40px;
 }
 
