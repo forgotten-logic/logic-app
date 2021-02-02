@@ -1,3 +1,8 @@
+import { pullFromLocStorage, setInLocStorage, USER } from '../common/utils.js';
+
+
+const moveCounter = document.getElementById('moves-counter'); 
+
 // create a grid of nine squares on which the tiles will move
 export function generateThreeByThree() {
     const tileMap = document.getElementById('tile-map');
@@ -33,7 +38,7 @@ export function generateThreeByThree() {
         if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
-
+    updateMovesCounter();
     return tileMap;
 }
 
@@ -63,9 +68,24 @@ export function generateEightTiles() {
         tiles[i].classList.add('tile');
         tiles[i].id = `${i + 1}`;
         tiles[i].textContent = `${i + 1}`;
-        tiles[i].addEventListener('click', () => {
+        tiles[i].addEventListener('click', () => {            
+            updateMovesCounter();
+            setUserMoves();
         });
     }
 
     return tiles;
+}
+
+let movesCount = 0;
+
+function setUserMoves() {
+    const user = pullFromLocStorage(USER);
+    user.moves++;
+    setInLocStorage(user);
+}
+
+
+function updateMovesCounter() {
+    moveCounter.innerText = movesCount++;
 }
