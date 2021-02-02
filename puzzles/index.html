@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./puzzle.css">
+    <link rel="stylesheet" href="../common/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Puzzles</title>
 </head>
 
@@ -15,14 +17,21 @@
         <h1>
             Puzzles
         </h1>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="./index.html">Puzzles</a>
-        </nav>   
+        <nav id='menu'>
+            <ul>
+              <li><a href='../index.html'>Home</a></li>
+              <li><a href='../puzzles/index.html'>Puzzles</a></li>
+              <li><a href='../about-devs/index.html'>About</a></li>
+            </ul>
+        </nav> 
     </header>
 
     <main>
         <div id="tile-map"></div>
+        <container>
+          <div class="animate__animated animate__bounce">Moves:</div>
+          <span id="moves-counter" class="moves-counter">0</span>
+        </container>
     </main>
 
     <footer>

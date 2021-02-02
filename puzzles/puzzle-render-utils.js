@@ -1,3 +1,8 @@
+import { pullFromLocStorage, setInLocStorage, USER } from '../common/utils.js';
+
+
+const moveCounter = document.getElementById('moves-counter'); 
+
 // create a grid of nine squares on which the tiles will move
 export function generateThreeByThree() {
     const tileMap = document.getElementById('tile-map');
@@ -25,7 +30,7 @@ export function generateThreeByThree() {
         pos9
     ];
 
-    const tiles = generateEightTiles();
+    // const tiles = generateEightTiles();
 
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
@@ -33,8 +38,7 @@ export function generateThreeByThree() {
         // if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
-
-    return tileMap;
+    return spaces;
 }
 
 // get 8 numbered tiles; returns an array of tiles
@@ -63,20 +67,40 @@ export function generateEightTiles() {
         tiles[i].classList.add('tile');
         tiles[i].id = `${i + 1}`;
         tiles[i].textContent = `${i + 1}`;
-        tiles[i].addEventListener('click', () => {
-            console.log(`Someone clicked ${i + 1}`);
+        tiles[i].addEventListener('click', () => {            
+            updateMovesCounter();
+            setUserMoves();
         });
     }
 	
     return tiles;
 }
 
-export function placeTilesRandomly() {
-    const tileMap = generateThreeByThree();
-    const tiles = generateEightTiles();
-
-    for (let tile of tiles) {
-        Math.random;
+export function getArrayOfRandomNumbers(array) {
+    let placementArray = [];
+	
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.ceil(Math.random() * array.length);
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
     }
+    return placementArray;
+}
 
+// export function placeTilesRandomly() {
+//     const tileSpaces = generateThreeByThree();
+//     const placements = getArrayOfRandomNumbers(tileSpaces);
+
+// }
+
+function setUserMoves() {
+    const user = pullFromLocStorage(USER);
+    user.moves++;
+    setInLocStorage(user);
+}
+
+let movesCount = 0;
+function updateMovesCounter() {
+    moveCounter.innerText = movesCount++;
 }
