@@ -34,7 +34,7 @@ export function generateThreeByThree() {
         tileMap.append(spaces[i]);
     }
 
-    return tileMap;
+    return spaces;
 }
 
 // get 8 numbered tiles; returns an array of tiles
@@ -71,9 +71,35 @@ export function generateEightTiles() {
     return tiles;
 }
 
+export function getArrayOfRandomNumbers(array) {
+	let placementArray = [];
+	while (placementArray.length < array.length) {
+		let randomNumber = Math.floor(Math.random * array.length);
+		if (!placementArray.some(n => n === randomNumber) {
+			placementArray.push(randomNumber);
+		}
+		else {
+			randomNumber = Math.floor(Math.random * array.length);
+		}
+	}
+}
+
 export function placeTilesRandomly() {
-    const tileMap = generateThreeByThree();
+    const tileSpaces = generateThreeByThree();
     const tiles = generateEightTiles();
 
-	
+	let placementArray = [];
+	while (placementArray.length < tileSpaces.length) {
+		let randomNumber = Math.floor(Math.random * tileSpaces.length);
+		if (!placementArray.some(n => n === randomNumber) {
+			placementArray.push(randomNumber);
+		}
+		else {
+			randomNumber = Math.floor(Math.random * tileSpaces.length);
+		}
+	}
+
+	for (let tile of tiles) {
+		
+	}
 }
