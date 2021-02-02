@@ -2,7 +2,7 @@
 export function generateThreeByThree() {
     const tileMap = document.getElementById('tile-map');
     tileMap.classList.add('tile-map');
-
+	
     const pos1 = document.createElement('div');
     const pos2 = document.createElement('div');
     const pos3 = document.createElement('div');
@@ -30,7 +30,7 @@ export function generateThreeByThree() {
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
-        if (tiles[i]) spaces[i].append(tiles[i]);
+        // if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
 
@@ -47,7 +47,7 @@ export function generateEightTiles() {
     const tile6 = document.createElement('div');
     const tile7 = document.createElement('div');
     const tile8 = document.createElement('div');
-
+	
     const tiles = [
         tile1,
         tile2,
@@ -67,6 +67,16 @@ export function generateEightTiles() {
             console.log(`Someone clicked ${i + 1}`);
         });
     }
-
+	
     return tiles;
+}
+
+export function placeTilesRandomly() {
+    const tileMap = generateThreeByThree();
+    const tiles = generateEightTiles();
+
+    for (let tile of tiles) {
+        Math.random;
+    }
+
 }
