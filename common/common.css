@@ -8,3 +8,55 @@ body, html {
 * {
     box-sizing: border-box;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu {
+	background: #384D48;
+	color: #FFF;
+	height: 45px;
+	padding-left: 18px;
+	border-radius: 10px;
+}
+
+
+#menu ul, #menu li {
+	margin: 0 auto;
+	padding: 0;
+    list-style: none
+}
+
+
+#menu ul {
+	width: 100%;
+}
+
+
+#menu li {
+	float: left;
+	display: inline;
+	position: relative;
+}
+
+#menu a {
+	display: block;
+	line-height: 45px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: #EBEBEB;
+	font-size: 15px;
+}
+
+#menu li a:hover {
+	color: #208FAB;
+	background: #384D48;
+}
+
+.home-p {
+    --animate-duration: 4s;
+}
