@@ -25,16 +25,19 @@ export function generateThreeByThree() {
         pos9
     ];
 
+    const tiles = generateEightTiles();
+
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
+        spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
 
     return tileMap;
 }
 
-// get 8 tiles with individual IDs; returns an array of tiles
+// get 8 numbered tiles; returns an array of tiles
 export function generateEightTiles() {
     const tile1 = document.createElement('div');
     const tile2 = document.createElement('div');
@@ -57,8 +60,9 @@ export function generateEightTiles() {
     ];
 
     for (let i = 0; i < tiles.length; i++) {
-        tiles[i].classList.add('tiles');
+        tiles[i].classList.add('tile');
         tiles[i].id = `tile-${i + 1}`;
+        tiles[i].textContent = `${i + 1}`;
     }
 	
     return tiles;

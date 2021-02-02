@@ -11,5 +11,7 @@
 }
 
 .tile {
-
+	background-color: palevioletred;
+	width: 80%;
+	height: 80%;
 }
