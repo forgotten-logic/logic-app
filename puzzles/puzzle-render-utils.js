@@ -2,7 +2,7 @@
 export function generateThreeByThree() {
     const tileMap = document.getElementById('tile-map');
     tileMap.classList.add('tile-map');
-	
+
     const pos1 = document.createElement('div');
     const pos2 = document.createElement('div');
     const pos3 = document.createElement('div');
@@ -47,7 +47,7 @@ export function generateEightTiles() {
     const tile6 = document.createElement('div');
     const tile7 = document.createElement('div');
     const tile8 = document.createElement('div');
-	
+
     const tiles = [
         tile1,
         tile2,
@@ -67,7 +67,7 @@ export function generateEightTiles() {
             console.log(`Someone clicked ${i + 1}`);
         });
     }
-	
+
     return tiles;
 }
 
