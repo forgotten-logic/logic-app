@@ -12,7 +12,7 @@ export function createUser(formData) {
     if (!formData.get('name') || !formData.get('avatar')) {
         user = {
             name: 'anonymous', 
-            avatar: 'booger',
+            avatar: '',
             moves: 0,
             wins: 0
         };
