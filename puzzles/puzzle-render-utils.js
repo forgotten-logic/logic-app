@@ -38,6 +38,7 @@ export function generateThreeByThree() {
         // if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
+
     return spaces;
 }
 
@@ -76,11 +77,12 @@ export function generateEightTiles() {
     return tiles;
 }
 
+// will give array the same length as the given array
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 	
-    while (placementArray.length <= array.length) {
-        let randomNumber = Math.ceil(Math.random() * (array.length + 1));
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.floor(Math.random() * (array.length));
         if (!placementArray.some(n => n === randomNumber)) {
             placementArray.push(randomNumber);
         }
@@ -88,11 +90,30 @@ export function getArrayOfRandomNumbers(array) {
     return placementArray;
 }
 
-// export function placeTilesRandomly() {
-//     const tileSpaces = generateThreeByThree();
-//     const placements = getArrayOfRandomNumbers(tileSpaces);
+export function placeTilesRandomly(nineSpaces) {
+    const eightTiles = generateEightTiles();
+    const placements = getArrayOfRandomNumbers(eightTiles);
+    // will return something like [2, 5, 7, 3, 1, 4, 6, 8]
+    console.log('nineSpaces: ', nineSpaces);
+    console.log('placements: ', placements);
+    console.log('eightTiles: ', eightTiles);
 
-// }
+    let placedTiles = [];
+    for (let i = 0; i < placements.length; i++) {
+        if (placements[i] === 9) {
+            placedTiles.push('empty');
+        }
+        else {
+            placedTiles.push(eightTiles[placements[i]]);
+        }
+    }
+    console.log('later placement read: ', placements);
+    
+
+    for (let i = 0; i < nineSpaces.length; i++) {
+        nineSpaces[i].append(placedTiles[i]);
+    }
+}
 
 function setUserMoves() {
     const user = pullFromLocStorage(USER);

@@ -1,3 +1,5 @@
-import { generateThreeByThree } from './puzzle-render-utils.js';
+import { generateThreeByThree, placeTilesRandomly } from './puzzle-render-utils.js';
 
-generateThreeByThree();
+const tileMap = generateThreeByThree();
+
+placeTilesRandomly(tileMap);
