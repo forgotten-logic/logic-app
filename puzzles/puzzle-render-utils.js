@@ -70,3 +70,10 @@ export function generateEightTiles() {
 	
     return tiles;
 }
+
+export function placeTilesRandomly() {
+    const tileMap = generateThreeByThree();
+    const tiles = generateEightTiles();
+
+	
+}
