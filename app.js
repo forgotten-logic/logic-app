@@ -7,5 +7,5 @@ form.addEventListener('submit', (e) => {
 
     const formData = new FormData(form);
     createUser(formData);
-    window.location = '../puzzles/index.html';
+    window.location = './puzzles/index.html';
 });
