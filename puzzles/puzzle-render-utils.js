@@ -64,7 +64,6 @@ export function generateEightTiles() {
         tiles[i].id = `${i + 1}`;
         tiles[i].textContent = `${i + 1}`;
         tiles[i].addEventListener('click', () => {
-            console.log(`Someone clicked ${i + 1}`);
         });
     }
 

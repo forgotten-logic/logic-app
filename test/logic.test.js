@@ -2,6 +2,8 @@
 // import { example } from '../example.js';
 // import { movableTiles } from '../puzzles/puzzle-utils.js';
 
+import { checkIfMovable } from '../puzzles/puzzle-utils.js';
+
 const test = QUnit.test;
 
 test('time to test a function', (expect) => {
@@ -18,17 +20,17 @@ test('time to test a function', (expect) => {
     expect.equal(actual, expected);
 });
 
-// test('test movableTile function for true', (expect) => {
-//     //Arrange
-//     // Set up your arguments and expectations
-//     const expected = true;
-//     const tiles = 6;
+test('test movableTile function for true', (expect) => {
+    //Arrange
+    // Set up your arguments and expectations
+    const expected = true;
+    const tiles = 6;
 
-//     //Act 
-//     // Call the function you're testing and set the result to a const
-//     const actual = movableTiles(tiles);
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const actual = checkIfMovable(tiles);
 
-//     //Expect
-//     // Make assertions about what is expected versus the actual result
-//     expect.equal(actual, expected);
-// });
+    //Expect
+    // Make assertions about what is expected versus the actual result
+    expect.equal(actual, expected);
+});
