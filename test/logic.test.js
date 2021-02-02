@@ -3,36 +3,22 @@
 // import { movableTiles } from '../puzzles/puzzle-utils.js';
 import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
 
+import { checkIfMovable } from '../puzzles/puzzle-utils.js';
+
 const test = QUnit.test;
 
-test('time to test a function', (expect) => {
+test('test movableTile function for true', (expect) => {
     //Arrange
     // Set up your arguments and expectations
-    const expected = false;
+    const expected = true;
+    const tiles = 6;
 
     //Act 
     // Call the function you're testing and set the result to a const
-    const actual = false;
-
-    //Expect
-    // Make assertions about what is expected versus the actual result
+    const actual = checkIfMovable(tiles);
+    
     expect.equal(actual, expected);
 });
-
-// test('test movableTile function for true', (expect) => {
-//     //Arrange
-//     // Set up your arguments and expectations
-//     const expected = true;
-//     const tiles = 6;
-
-//     //Act 
-//     // Call the function you're testing and set the result to a const
-//     const actual = movableTiles(tiles);
-
-//     //Expect
-//     // Make assertions about what is expected versus the actual result
-//     expect.equal(actual, expected);
-// });
 
 test('It should return an array of random numbers equal to the length of the given array, with no number higher than the highest index in the given array, and no number repeated', (expect) => {
     const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];

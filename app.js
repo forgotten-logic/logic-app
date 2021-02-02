@@ -4,8 +4,8 @@ const form = document.getElementById('newUser');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(form);
     createUser(formData);
-    window.location = '../index.html';
+    window.location = '../puzzles/index.html';
 });
