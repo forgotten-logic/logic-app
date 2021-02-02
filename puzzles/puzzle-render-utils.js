@@ -83,8 +83,8 @@ export function getArrayOfRandomNumbers(array) {
     return placementArray;
 }
 
-export function placeTilesRandomly() {
-    const tileSpaces = generateThreeByThree();
-    const placements = getArrayOfRandomNumbers(tileSpaces);
+// export function placeTilesRandomly() {
+//     const tileSpaces = generateThreeByThree();
+//     const placements = getArrayOfRandomNumbers(tileSpaces);
 
-}
+// }
