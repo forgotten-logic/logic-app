@@ -37,7 +37,6 @@ test('time to test a function', (expect) => {
 test('It should return an array of random numbers equal to the length of the given array, with no number higher than the highest index in the given array, and no number repeated', (expect) => {
     const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const generatedArray = getArrayOfRandomNumbers(testArray);
-    console.log(generatedArray);
 
     // compare length to given
     const expected1 = true;
@@ -45,7 +44,7 @@ test('It should return an array of random numbers equal to the length of the giv
 
     // check that all values lower than length of given
     const expected2 = true;
-    const actual2 = generatedArray.every(n => n < testArray.length);
+    const actual2 = generatedArray.every(n => n <= testArray.length);
 
     // check that no numbers are equal to each other
     const expected3 = true;

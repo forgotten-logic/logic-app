@@ -25,12 +25,12 @@ export function generateThreeByThree() {
         pos9
     ];
 
-    const tiles = generateEightTiles();
+    // const tiles = generateEightTiles();
 
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
-        if (tiles[i]) spaces[i].append(tiles[i]);
+        // if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
 
@@ -75,7 +75,7 @@ export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 	
     while (placementArray.length < array.length) {
-        let randomNumber = Math.floor(Math.random() * array.length);
+        let randomNumber = Math.ceil(Math.random() * array.length);
         if (!placementArray.some(n => n === randomNumber)) {
             placementArray.push(randomNumber);
         }
@@ -85,20 +85,6 @@ export function getArrayOfRandomNumbers(array) {
 
 export function placeTilesRandomly() {
     const tileSpaces = generateThreeByThree();
-    const tiles = generateEightTiles();
+    const placements = getArrayOfRandomNumbers(tileSpaces);
 
-    let placementArray = [];
-    while (placementArray.length < tileSpaces.length) {
-        let randomNumber = Math.floor(Math.random * tileSpaces.length);
-        if (!placementArray.some(n => n === randomNumber)) {
-            placementArray.push(randomNumber);
-        }
-        else {
-            randomNumber = Math.floor(Math.random * tileSpaces.length);
-        }
-    }
-
-    for (let tile of tiles) {
-		
-    }
 }
