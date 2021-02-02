@@ -1,0 +1,15 @@
+.tile-map {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	width: 400px;
+	height: 400px;
+}
+
+.space {
+	border: 1px solid black;
+}
+
+.tile {
+
+}
