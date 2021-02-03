@@ -1,6 +1,5 @@
-import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
 import eightData from '../data/eight-data.js';
-import { checkIfMovable } from '../puzzles/puzzle-utils.js';
+import { checkIfMovable, getArrayOfRandomNumbers } from '../puzzles/puzzle-utils.js';
 
 const test = QUnit.test;
 
@@ -18,7 +17,7 @@ test('test movableTile function for true', (expect) => {
     expect.equal(actual, expected);
 });
 
-test('It should return an array of random numbers equal to the length of the given array, with no number higher than the highest index in the given array, and no number repeated', (expect) => {
+test('It should return an array of random numbers equal to the length of the given array, with no number higher than the length of the given array, and no number repeated', (expect) => {
     const testArray = [1, 2, 3, 4, 5, 6, 7, 8];
     const generatedArray = getArrayOfRandomNumbers(testArray);
     
