@@ -3,17 +3,18 @@ import eightData from '../data/eight-data.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
-    updateMovesCounter,
-    setUserMoves,
+    updateAndSetUserMoves,
     checkWinCondition,
-    renderNewResults
+    renderResults
 } from '../puzzles/puzzle-utils.js';
 
-import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
+import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
 const USER = 'USER';
-
-localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
 const user = pullFromLocStorage(USER);
+const EIGHTDATA = 'EIGHTDATA';
+
+setInLocStorage(EIGHTDATA, eightData);
+
 
 // create a grid of nine squares on which the tiles will move
 const tileMap = document.getElementById('tile-map');
@@ -85,7 +86,7 @@ export function generateEightTiles() {
         tile9
     ];
 
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     for (let i = 0; i < localStorageEightData.length; i++) {
         const tileData = localStorageEightData.find(item => item.position === i + 1);
 
@@ -97,19 +98,17 @@ export function generateEightTiles() {
 
                 const selectedTile = tileData.id;
                 if (checkIfMovable(selectedTile) === true) {
-                    updateMovesCounter();
-                    setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
 
-                    let solved = checkWinCondition(newTiles);
+                    if (user.moves >= 1) {
+                        let solved = checkWinCondition(newTiles);
 
-                    const stringyTiles = JSON.stringify(newTiles);
-                    localStorage.setItem('EIGHTDATA', stringyTiles);
-                    generateThreeByThree();
-                    if (solved === true) {
-                        user.gamesWon++;
-                        setInLocStorage(user);
-                        renderNewResults();
+                        updateAndSetUserMoves();
+                        setInLocStorage(EIGHTDATA, newTiles);
+                        generateThreeByThree();
+                        if (solved === true) {
+                            renderResults();
+                        }
                     }
                 }
             });

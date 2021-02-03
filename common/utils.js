@@ -6,8 +6,8 @@ export function pullFromLocStorage(key) {
 
 }
 
-export function setInLocStorage(user) {
-    localStorage.setItem(USER, JSON.stringify(user));
+export function setInLocStorage(magicKey, key2) {
+    localStorage.setItem(magicKey, JSON.stringify(key2));
 }
 
 export function clearLocStorage() {
@@ -24,7 +24,7 @@ export function createUser(formData) {
             gamesWon: 0
         };
 
-        setInLocStorage(user);
+        setInLocStorage(USER, user);
 
     } else {
 
@@ -34,7 +34,7 @@ export function createUser(formData) {
             moves: 0,
             gamesWon: 0,
         };
-        setInLocStorage(user);
+        setInLocStorage(USER, user);
     }
 
 }

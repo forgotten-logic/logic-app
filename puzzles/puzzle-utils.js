@@ -6,8 +6,24 @@ import {
 } from '../common/utils.js';
 
 const USER = 'USER';
+const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
+
+// GENERATED RESULTS DOM ELEMENTS //
+let solvedCount = 0;
+let movesCount = 0;
+const resultsContainer = document.getElementById('results-display');
+const winLoseMessageEl = document.createElement('p');
+winLoseMessageEl.id = 'win-or-lose';
+const solvedEl = document.createElement('p');
+solvedEl.id = 'user-solved';
+solvedEl.textContent = 'Solved: ' + solvedCount;
+
+const movesEl = document.createElement('p');
+movesEl.id = 'user-moves';
+movesEl.classList.add('animate__animated', 'animate__bounce');
+movesEl.textContent = 'Moves: ' + movesCount;
 
 function movementMap(position) {
     if (position === 9) return [6, 8];
@@ -22,7 +38,7 @@ function movementMap(position) {
 }
 
 export function checkIfMovable(selectedTile) {
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
     let emptyTile = findById(localStorageEightData, 9);
     const moveable = movementMap(emptyTile.position);
@@ -34,7 +50,7 @@ export function checkIfMovable(selectedTile) {
 }
 
 export function moveTilesOnClick(selectedTile) {
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
 
     let emptyTile = localStorageEightData.find(tile => tile.id === 9);
 
@@ -59,45 +75,38 @@ export function checkWinCondition(newTiles) {
 
         if (tile.position === tile.id) {
             condition = true;
-
-
-        } else {
+        }
+        else {
             condition = false;
-
         }
     }
     return condition;
 }
 
-const movesEl = document.createElement('p');
-
-let solvedCount = 0;
-let movesCount = 0;
-
-export function updateMovesCounter() {
+export function updateAndSetUserMoves() {
     movesCount++;
     movesEl.textContent = 'Moves: ' + movesCount;
-}
-
-export function setUserMoves() {
     user.moves++;
-    setInLocStorage(user);
+    setInLocStorage(USER, user);
 }
 
 function winOrLose() {
-    if (solvedCount >= 1) { // UPDATE BACK TO USER.GAMESWON ONCE CHECK IF SOLVED IS READY //
+    if (user.gamesWon >= 1) {
         return true;
     }
     else false;
 }
 
-export function renderResultsDisplay() {
-    const { winLoseMessageEl, resultsContainer, solvedEl } = createResultsDisplay();
+export function renderResults() {
+    solvedCount++;
+    user.gamesWon++;
+    solvedEl.textContent = 'Solved: ' + solvedCount;
 
-    setInLocStorage(user);
+    setInLocStorage(USER, user);
 
     let winState = winOrLose();
 
+    // DISPLAY OF WINLOSE MESSAGE //
     winLoseMessageEl.style.display = 'flex';
     winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
     winLoseMessageEl.addEventListener('animationend', () => {
@@ -108,22 +117,6 @@ export function renderResultsDisplay() {
 
     resultsContainer.append(movesEl, solvedEl, winLoseMessageEl);
 
-    function createResultsDisplay() {
-        const resultsContainer = document.getElementById('results-display');
-        const winLoseMessageEl = document.createElement('p');
-        winLoseMessageEl.id = 'win-or-lose';
-        const solvedEl = document.createElement('p');
-
-        movesEl.id = 'user-moves';
-        movesEl.classList.add('animate__animated', 'animate__bounce');
-        movesEl.textContent = 'Moves: ' + movesCount;
-
-        solvedEl.id = 'user-solved';
-        solvedEl.textContent = 'Solved: ' + solvedCount;
-
-        return { winLoseMessageEl, resultsContainer, solvedEl };
-    }
-
     function resultMessage(winState) {
         if (winState === true) {
             winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
@@ -133,11 +126,4 @@ export function renderResultsDisplay() {
         }
         return winLoseMessageEl;
     }
-}
-
-
-export function renderNewResults() {
-    solvedCount++;
-    const solvedResults = document.getElementById('user-solved');
-    solvedResults.textContent = 'Solved: ' + solvedCount;
 }
