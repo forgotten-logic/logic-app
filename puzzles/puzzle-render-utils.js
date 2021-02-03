@@ -7,7 +7,8 @@ import {
     updateMovesCounter,
     setUserMoves,
     checkWinCondition,
-    renderNewResults
+    renderNewResults,
+    getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
 import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
