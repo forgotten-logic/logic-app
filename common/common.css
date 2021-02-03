@@ -9,16 +9,26 @@ body, html {
     box-sizing: border-box;
 }
 
+body {
+	/* SCSS HSL */
+	--color1: hsla(4, 79%, 59%, 1); /*fire-opal*/
+	--color2: hsla(35, 61%, 90%, 1); /*antique-white*/
+	--color3: hsla(174, 59%, 56%, 1); /*medium-turquoise*/
+	--color4: hsla(166, 16%, 26%, 1); /*dark-slate-gray*/
+	--color5: hsla(0, 0%, 0%, 1); /*black*/
+}
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+	align-items: center;
+	margin-bottom: 20px;
 }
 
 #menu {
-	background: rgb(56, 77, 72);
-	color: #FFF;
+	background: var(--color4);
+	color: var(--color2);
 	height: 45px;
 	padding-left: 18px;
 	border-radius: 10px;
@@ -49,15 +59,35 @@ main {
 	line-height: 45px;
 	padding: 0 14px;
 	text-decoration: none;
-	color: #ffffff;
+	color: var(--color2);
 	font-size: 25px;
 }
 
 #menu li a:hover {
-	color:  rgba(0,255,203,.64);
-	background: #384D48;
+	color: var(--color3);
+	background: var(--color4);
 }
 
+footer > a {
+	text-decoration: none;
+}
+
+footer > p {
+	margin: 0;
+}
+
+footer {
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    bottom: 0;
+    height: 30px;
+    padding-right: 5px;
+	background-color: var(--color4);
+	color: var(--color2);
+	border-radius: 10px;
+}
 
 @font-face {
     font-family: 'typo_draft_demoregular';

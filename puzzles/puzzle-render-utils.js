@@ -1,21 +1,19 @@
-// import { findById } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
 
 import {
     moveTilesOnClick,
     checkIfMovable,
-    updateMovesCounter,
-    setUserMoves,
+    updateAndSetUserMoves,
     checkWinCondition,
-    renderNewResults,
-    getArrayOfRandomNumbers
+    renderResults
 } from '../puzzles/puzzle-utils.js';
 
-import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
-const USER = 'USER';
+import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
+// const USER = 'USER';
+// const user = pullFromLocStorage(USER);
+const EIGHTDATA = 'EIGHTDATA';
 
-localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
-const user = pullFromLocStorage(USER);
+setInLocStorage(EIGHTDATA, eightData);
 
 // create a grid of nine squares on which the tiles will move
 const tileMap = document.getElementById('tile-map');
@@ -87,7 +85,7 @@ export function generateEightTiles() {
         tile9
     ];
 
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     for (let i = 0; i < localStorageEightData.length; i++) {
         const tileData = localStorageEightData.find(item => item.position === i + 1);
 
@@ -99,46 +97,54 @@ export function generateEightTiles() {
 
                 const selectedTile = tileData.id;
                 if (checkIfMovable(selectedTile) === true) {
-                    updateMovesCounter();
-                    setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
 
                     let solved = checkWinCondition(newTiles);
-                    setInLocStorage(user);
-                    const stringyTiles = JSON.stringify(newTiles);
-                    localStorage.setItem('EIGHTDATA', stringyTiles);
+
+                    updateAndSetUserMoves();
+                    setInLocStorage(EIGHTDATA, newTiles);
                     generateThreeByThree();
                     if (solved === true) {
-                        user.gamesWon++;
-                        setInLocStorage(user);  
-                        renderNewResults();
+                        renderResults();
                     }
                 }
             });
         }
-
     }
     return tiles;
 }
+export function getArrayOfRandomNumbers(array) {
+    let placementArray = [];
 
-export function placeTilesRandomly() {
-    // get the array of tile objects from localStorage
-    const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.floor(Math.random() * (array.length));
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
+    }
+    return placementArray;
+}
 
-    // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
-    const placements = getArrayOfRandomNumbers(tileObjects);
-    
-    // make an array of tile objects with positions updated to reflect the random array
+export function placeTilesRandomly(nineSpaces) {
+    const eightTiles = generateEightTiles();
+    const placements = getArrayOfRandomNumbers(eightTiles);
+    // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
+
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
-        const tileObject = tileObjects.find(tile => tile.id === placements[i]);
-        tileObject.position = i + 1;
-        placedTiles.push(tileObject);
+        if (placements[i] === 9) {
+            placedTiles.push('empty');
+        }
+        else {
+            placedTiles.push(eightTiles[placements[i]]);
+        }
     }
 
-    // set shuffled tile positions in local storage
-    localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
+    for (let i = 0; i < nineSpaces.length; i++) {
+        nineSpaces[i].append(placedTiles[i]);
+    }
+}
 
-    // generate the grid with the updated position data
-    generateThreeByThree();
+export function generatePuzzleInfo() {
+
 }

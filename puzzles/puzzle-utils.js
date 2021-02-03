@@ -6,20 +6,24 @@ import {
 } from '../common/utils.js';
 
 const USER = 'USER';
+const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 
-export function getArrayOfRandomNumbers(array) {
-    let placementArray = [];
+// GENERATED RESULTS DOM ELEMENTS //
+let solvedCount = 0;
+let movesCount = 0;
+const resultsContainer = document.getElementById('results-display');
+const winLoseMessageEl = document.createElement('p');
+winLoseMessageEl.id = 'win-or-lose';
+const solvedEl = document.createElement('p');
+solvedEl.id = 'user-solved';
+solvedEl.textContent = 'Solved: ' + solvedCount;
 
-    while (placementArray.length < array.length) {
-        let randomNumber = Math.ceil(Math.random() * (array.length));
-        if (!placementArray.some(n => n === randomNumber)) {
-            placementArray.push(randomNumber);
-        }
-    }
-    return placementArray;
-}
+const movesEl = document.createElement('p');
+movesEl.id = 'user-moves';
+movesEl.classList.add('animate__animated', 'animate__bounce');
+movesEl.textContent = 'Moves: ' + movesCount;
 
 const movementMap = {
     9: [6, 8],
@@ -34,8 +38,7 @@ const movementMap = {
 };
 
 export function checkIfMovable(selectedTile) {
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
-
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
 
     let emptyTile = findById(localStorageEightData, 9);
@@ -50,7 +53,7 @@ export function checkIfMovable(selectedTile) {
 }
 
 export function moveTilesOnClick(selectedTile) {
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
 
     let emptyTile = localStorageEightData.find(tile => tile.id === 9);
 
@@ -84,76 +87,39 @@ export function checkWinCondition(newTiles) {
     return condition;
 }
 
-const movesEl = document.createElement('p');
-
-let solvedCount = 0;
-let movesCount = 0;
-
-export function updateMovesCounter() {
+export function updateAndSetUserMoves() {
     movesCount++;
     movesEl.textContent = 'Moves: ' + movesCount;
-}
-
-export function setUserMoves() {
     user.moves++;
-    setInLocStorage(user);
-}
-
-export function clearUserMoves() {
-    movesCount = 0;
-    movesEl.textContent = 'Moves: ' + movesCount;
-    user.moves = 0;
-    setInLocStorage(user);
+    setInLocStorage(USER, user);
 }
 
 function winOrLose() {
-    if (solvedCount >= 1) { // UPDATE BACK TO USER.GAMESWON ONCE CHECK IF SOLVED IS READY //
+    if (user.gamesWon >= 1) {
         return true;
     }
-    else false;
+    else false; // currently not linked to any action/result - need to update to trigger //
 }
 
-export function renderResultsDisplay() {
-    const { endBtn, winLoseMessageEl, resultsContainer, solvedEl, resetBtn } = createResultsDisplay();
+export function renderResults() {
+    solvedCount++;
+    user.gamesWon++;
+    solvedEl.textContent = 'Solved: ' + solvedCount;
 
-    setInLocStorage(user);
-    endBtn.addEventListener('click', () => {
-        let winState = winOrLose();
+    setInLocStorage(USER, user);
 
-        winLoseMessageEl.style.display = 'flex';
-        winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
-        winLoseMessageEl.addEventListener('animationend', () => {
-            winLoseMessageEl.classList.remove('animate__zoomInUp');
-            winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
-        });
-        resultMessage(winState);
+    let winState = winOrLose();
 
+    // DISPLAY OF WINLOSE MESSAGE //
+    winLoseMessageEl.style.display = 'flex';
+    winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
+    winLoseMessageEl.addEventListener('animationend', () => {
+        winLoseMessageEl.classList.remove('animate__zoomInUp');
+        winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
     });
+    resultMessage(winState);
 
-    resultsContainer.append(movesEl, solvedEl, endBtn, winLoseMessageEl, resetBtn);
-
-    function createResultsDisplay() {
-        const resultsContainer = document.getElementById('results-display');
-        const winLoseMessageEl = document.createElement('p');
-        winLoseMessageEl.id = 'win-or-lose';
-        const solvedEl = document.createElement('p');
-        const endBtn = document.createElement('button');
-        const resetBtn = document.createElement('button');
-
-        movesEl.id = 'user-moves';
-        movesEl.classList.add('animate__animated', 'animate__bounce');
-        movesEl.textContent = 'Moves: ' + movesCount;
-
-        solvedEl.id = 'user-solved';
-        solvedEl.textContent = 'Solved: ' + solvedCount;
-
-        endBtn.textContent = 'End Game';
-        resetBtn.textContent = 'Play again?';
-        resetBtn.addEventListener('click', () => {
-            window.location = './';
-        });
-        return { endBtn, winLoseMessageEl, resultsContainer, solvedEl, resetBtn };
-    }
+    resultsContainer.append(movesEl, solvedEl, winLoseMessageEl);
 
     function resultMessage(winState) {
         if (winState === true) {
@@ -164,11 +130,4 @@ export function renderResultsDisplay() {
         }
         return winLoseMessageEl;
     }
-}
-
-
-export function renderNewResults(){
-    solvedCount++;
-    const solvedResults = document.getElementById('user-solved');
-    solvedResults.textContent = 'Solved: ' + solvedCount;
 }

@@ -61,6 +61,11 @@ p {
 	text-align: center;
 }
 
+.puzzleInfo {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}
 
 .button {
 	padding: 10rem;
