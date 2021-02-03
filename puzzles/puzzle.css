@@ -12,6 +12,7 @@ main {
 }
 
 .tile-map {
+	margin: 5em;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -24,6 +25,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 10px;
 }
 
 .tile {
@@ -33,6 +35,11 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 10px;
+}
+
+p {
+	font-size: 25px;
 }
 
 #win-or-lose {

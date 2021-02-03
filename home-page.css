@@ -19,6 +19,18 @@ h1 {
     font-family: 'puzzleregular';
 }
 
+.home-page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
 section {
     display: flex;
     flex-direction: column;
@@ -29,8 +41,16 @@ section {
     height: 700px;
     width: 50%;
     margin-top: 10px;
-    background-color: rgb(250, 235, 215, .9);
+    background-color: rgba(255, 255, 255, 0.9);
 }
+
+img {
+    max-height: 100px;
+    max-width: 100px;
+    width: 30%;
+    height: 80%;
+}
+
 
 .home-p {
     font-family: 'puzzleregular';
@@ -38,8 +58,23 @@ section {
     --animate-duration: 4s;
 }
 
+
+input[type="radio"] {
+    display: none;
+    margin: 1em;
+}
+
+
+
+input[type="radio"]:checked + img {
+    -webkit-animation: rotate-center 0.6s ease-in-out both;
+	        animation: rotate-center 0.6s ease-in-out both;
+}
+
+
 .user-input {
     padding: 4px;
+    margin: 1em;
     font-size: 15px;
     border-width: 4px;
     border-color: #4FD1C5;
@@ -50,9 +85,13 @@ section {
     box-shadow: 0px -1px 11px rgba(66,66,66,.85);
     text-shadow: 0px 0px 0px rgba(66,66,66,.0);
 }
+
+
 .user-input:focus {
     outline:none;
 }
+
+
 
 .button-box {
     display: block;
@@ -77,6 +116,7 @@ section {
     outline: none;
     position: relative;
     padding: 10px;
+    margin-left: 5em;
 }
   
 button::before {
@@ -138,3 +178,24 @@ footer {
     font-style: normal;
 
 }
+
+@-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
