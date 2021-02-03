@@ -5,6 +5,7 @@ import {
     checkIfMovable,
     updateMovesCounter,
     setUserMoves,
+    getArrayOfRandomNumbers,
     // checkWinCondition
 } from '../puzzles/puzzle-utils.js';
 
@@ -118,22 +119,25 @@ export function generateEightTiles() {
     return tiles;
 }
 
-export function placeTilesRandomly(nineSpaces) {
-    const eightTiles = generateEightTiles();
-    const placements = getArrayOfRandomNumbers(eightTiles);
+export function placeTilesRandomly() {
+    const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    // will return an array of tile objects
+    console.log(tileObjects);
+    const placements = getArrayOfRandomNumbers(tileObjects);
     // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
+    console.log(placements);
 
-    let placedTiles = [];
-    for (let i = 0; i < placements.length; i++) {
-        if (placements[i] === 9) {
-            placedTiles.push('empty');
-        }
-        else {
-            placedTiles.push(eightTiles[placements[i]]);
-        }
-    }
+    // let placedTiles = [];
+    // for (let i = 0; i < placements.length; i++) {
+    //     if (placements[i] === 9) {
+    //         placedTiles.push('empty');
+    //     }
+    //     else {
+    //         placedTiles.push(eightTiles[placements[i]]);
+    //     }
+    // }
 
-    for (let i = 0; i < nineSpaces.length; i++) {
-        nineSpaces[i].append(placedTiles[i]);
-    }
+    // for (let i = 0; i < nineSpaces.length; i++) {
+    //     nineSpaces[i].append(placedTiles[i]);
+    // }
 }

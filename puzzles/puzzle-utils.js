@@ -13,7 +13,7 @@ export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 
     while (placementArray.length < array.length) {
-        let randomNumber = Math.floor(Math.random() * (array.length));
+        let randomNumber = Math.ceil(Math.random() * (array.length));
         if (!placementArray.some(n => n === randomNumber)) {
             placementArray.push(randomNumber);
         }
