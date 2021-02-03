@@ -21,7 +21,7 @@ h2 {
     font-size: 55px;
 }
 
-div {
+article {
     display: flex;
     flex-direction: column;
     justify-content: center;
