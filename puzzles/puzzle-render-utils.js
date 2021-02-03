@@ -110,8 +110,8 @@ export function generateEightTiles() {
                 }
             });
         }
-        return tiles;
     }
+    return tiles;
 }
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
