@@ -6,15 +6,15 @@ import {
     checkIfMovable,
     updateMovesCounter,
     setUserMoves,
-    getArrayOfRandomNumbers,
-    // checkWinCondition
+    checkWinCondition,
+    renderNewResults
 } from '../puzzles/puzzle-utils.js';
 
-// import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
-// const USER = 'USER';
+import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
+const USER = 'USER';
 
 localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
-// const user = pullFromLocStorage(USER);
+const user = pullFromLocStorage(USER);
 
 // create a grid of nine squares on which the tiles will move
 const tileMap = document.getElementById('tile-map');
@@ -102,16 +102,16 @@ export function generateEightTiles() {
                     setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
 
-                    // let solved = checkWinCondition(newTiles);
+                    let solved = checkWinCondition(newTiles);
 
                     const stringyTiles = JSON.stringify(newTiles);
                     localStorage.setItem('EIGHTDATA', stringyTiles);
                     generateThreeByThree();
-                    // if (solved === true) {
-                    //     user.gamesWon++;
-                    //     solvedCount++;
-                    //     setInLocStorage(user);
-                    // }
+                    if (solved === true) {
+                        user.gamesWon++;
+                        setInLocStorage(user);
+                        renderNewResults();
+                    }
                 }
             });
         }
