@@ -96,6 +96,13 @@ export function setUserMoves() {
     setInLocStorage(user);
 }
 
+export function clearUserMoves() {
+    movesCount = 0;
+    movesEl.textContent = 'Moves: ' + movesCount;
+    user.moves = 0;
+    setInLocStorage(user);
+}
+
 function winOrLose() {
     if (solvedCount >= 1) { // UPDATE BACK TO USER.GAMESWON ONCE CHECK IF SOLVED IS READY //
         return true;
