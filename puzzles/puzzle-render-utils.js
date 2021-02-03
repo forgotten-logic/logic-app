@@ -48,8 +48,8 @@ export function generateThreeByThree() {
 
 // get 8 numbered tiles; returns an array of tiles
 export function generateEightTiles() {
-    const oldtiles = document.querySelectorAll('.tile');
-    for (let tile of oldtiles) {
+    const oldTiles = document.querySelectorAll('.tile');
+    for (let tile of oldTiles) {
         tile.remove();
     }
     const tile1 = document.createElement('div');
@@ -76,7 +76,8 @@ export function generateEightTiles() {
 
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
     for (let i = 0; i < localStorageEightData.length; i++) {
-        const tileData = localStorageEightData.find(item => item.homePosition === i + 1);
+        const tileData = localStorageEightData.find(item => item.position === i + 1);
+
         if (!tileData.isEmpty) {
             tiles[i].classList.add('tile');
             tiles[i].id = tileData.id;
@@ -87,9 +88,9 @@ export function generateEightTiles() {
                 if (checkIfMovable(selectedTile) === true){  
                     updateMovesCounter();
                     setUserMoves();
-                    const newtiles = moveTilesOnClick(selectedTile);
-                    const stringytiles = JSON.stringify(newtiles);
-                    localStorage.setItem('EIGHTDATA', stringytiles);
+                    const newTiles = moveTilesOnClick(selectedTile);
+                    const stringyTiles = JSON.stringify(newTiles);
+                    localStorage.setItem('EIGHTDATA', stringyTiles);
                     generateThreeByThree();
 
                 }

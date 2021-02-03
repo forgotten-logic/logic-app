@@ -18,8 +18,8 @@ export function checkIfMovable(selectedTile) {
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
     let tile = findById(localStorageEightData, selectedTile);
     let emptyTile = findById(localStorageEightData, 9);
-    const moveable = movementMap(emptyTile.homePosition);
-    if (moveable.includes(tile.homePosition)) {
+    const moveable = movementMap(emptyTile.position);
+    if (moveable.includes(tile.position)) {
         return true;
     } else {
         return false;
@@ -31,16 +31,19 @@ export function moveTilesOnClick(selectedTile) {
   
     let emptyTile = localStorageEightData.find(tile => tile.id === 9);
 
-    let emptyhomePosition = emptyTile.homePosition;
+    let emptyPosition = emptyTile.position;
 
     const selectedTileObject = findById(localStorageEightData, selectedTile);
 
-    let selectedhomePosition = selectedTileObject.homePosition;
+    let selectedPosition = selectedTileObject.position;
 
-    emptyTile.homePosition = selectedhomePosition;
+    emptyTile.position = selectedPosition;
 
-    selectedTileObject.homePosition = emptyhomePosition;
+    selectedTileObject.position = emptyPosition;
 
     return localStorageEightData;
 }
 
+export function checkWinCondition(){
+
+}
