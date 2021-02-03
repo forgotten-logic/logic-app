@@ -1,6 +1,3 @@
-// IMPORT MODULES under test here:
-// import { example } from '../example.js';
-// import { movableTiles } from '../puzzles/puzzle-utils.js';
 import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
 
 import { checkIfMovable } from '../puzzles/puzzle-utils.js';
@@ -16,7 +13,7 @@ test('test movableTile function for true', (expect) => {
     //Act 
     // Call the function you're testing and set the result to a const
     const actual = checkIfMovable(tiles);
-    
+
     expect.equal(actual, expected);
 });
 
@@ -35,8 +32,10 @@ test('It should return an array of random numbers equal to the length of the giv
     // check that no numbers are equal to each other
     const expected3 = true;
     const actual3 = generatedArray.reduce((a, b) => a !== b);
-    
+
     expect.equal(actual1, expected1);
     expect.equal(actual2, expected2);
     expect.equal(actual3, expected3);
 });
+
+

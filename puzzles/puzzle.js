@@ -1,3 +1,7 @@
-import { generateThreeByThree } from './puzzle-render-utils.js';
+import {
+    generateThreeByThree,
+    renderResultsDisplay
+} from './puzzle-render-utils.js';
 
 generateThreeByThree();
+renderResultsDisplay();

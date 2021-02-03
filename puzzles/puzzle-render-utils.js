@@ -1,7 +1,7 @@
 import { pullFromLocStorage, setInLocStorage, USER } from '../common/utils.js';
 
 
-const moveCounter = document.getElementById('moves-counter'); 
+// const moveCounter = document.getElementById('moves-counter');
 
 // create a grid of nine squares on which the tiles will move
 export function generateThreeByThree() {
@@ -30,12 +30,12 @@ export function generateThreeByThree() {
         pos9
     ];
 
-    // const tiles = generateEightTiles();
+    const tiles = generateEightTiles();
 
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
-        // if (tiles[i]) spaces[i].append(tiles[i]);
+        if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
     return spaces;
@@ -67,7 +67,7 @@ export function generateEightTiles() {
         tiles[i].classList.add('tile');
         tiles[i].id = `${i + 1}`;
         tiles[i].textContent = `${i + 1}`;
-        tiles[i].addEventListener('click', () => {            
+        tiles[i].addEventListener('click', () => {
             updateMovesCounter();
             setUserMoves();
         });
@@ -78,7 +78,7 @@ export function generateEightTiles() {
 
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
-	
+
     while (placementArray.length < array.length) {
         let randomNumber = Math.ceil(Math.random() * array.length);
         if (!placementArray.some(n => n === randomNumber)) {
@@ -100,7 +100,34 @@ function setUserMoves() {
     setInLocStorage(user);
 }
 
+const resultsContainer = document.getElementById('results-display');
+// const winLoseMessageEl = document.createElement('p');
+const movesEl = document.createElement('p');
+const solveEl = document.createElement('p');
+
+export function renderResultsDisplay() {
+    const user = pullFromLocStorage(USER);
+
+    // render and track user moves in movesEl //
+    movesEl.id = 'user-moves';
+    movesEl.classList.add('animate__animated', 'animate__bounce');
+    movesEl.textContent = 'Moves: ' + movesCount;
+
+    // render and track user's win results in winEl //
+    solveEl.id = 'user-solved';
+    solveEl.textContent = 'Solved: ' + 'Solved Count Goes Here';
+    // update user wins in LS upon game submit //
+
+
+    setInLocStorage(user);
+    // append results display elements to resultsContainer //
+    resultsContainer.append(movesEl, solveEl);
+    // display hidden winLoseMessageEl upon game completion. Overlay game board with pop-up result message //
+
+}
+
 let movesCount = 0;
 function updateMovesCounter() {
-    moveCounter.innerText = movesCount++;
+    movesCount++;
+    movesEl.textContent = 'Moves: ' + movesCount;
 }

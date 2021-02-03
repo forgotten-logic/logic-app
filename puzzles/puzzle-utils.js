@@ -24,3 +24,4 @@ export function checkIfMovable(selectedTile) {
         return false;
     }
 }
+
