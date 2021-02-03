@@ -1,61 +1,41 @@
-const baseLine = '20%';
-
 const eightData = [
     {
         id: 1,
-        homePosition: 1,
-        top: 0,
-        left: 0,
+        position: 1,
     },
     {
         id: 2,
-        homePosition: 2,
-        top: 0,
-        left: baseLine,
+        position: 2,
     },
     {
         id: 3,
-        homePosition: 3,
-        top: 0,
-        left: baseLine * 2,
+        position: 3,
     },
     {
         id: 4,
-        homePosition: 4,
-        top: baseLine,
-        left: 0,
+        position: 4,
     },
     {
         id: 5,
-        homePosition: 5,
-        top: baseLine,
-        left: baseLine,
+        position: 5,
     },
     {
         id: 6,
-        homePosition: 6,
-        top: baseLine,
-        left: baseLine * 2,
+        position: 6,
     },
     {
         id: 7,
-        homePosition: 7,
-        top: baseLine * 2,
-        left: 0,
+        position: 7,
     },
     {
         id: 8,
-        homePosition: 8,
-        top: baseLine * 2,
-        left: baseLine,
+        position: 8,
     },
     {
         id: 9,
         isEmpty: true,
-        homePosition: 9,
-        top: baseLine * 2,
-        left: baseLine * 2,
-    } 
+        position: 9,
+    }
 ];
 
 export default eightData;
