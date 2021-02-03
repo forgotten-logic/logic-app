@@ -1,3 +1,4 @@
+import { findById } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
 
 import {
@@ -120,24 +121,23 @@ export function generateEightTiles() {
 }
 
 export function placeTilesRandomly() {
+    // get the array of tile objects from localStorage
     const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
-    // will return an array of tile objects
-    console.log(tileObjects);
+
+    // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-    // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
-    console.log(placements);
+    
+    // make an array of tile objects with positions updated to reflect the random array
+    let placedTiles = [];
+    for (let i = 0; i < placements.length; i++) {
+        const tileObject = tileObjects.find(tile => tile.id === placements[i]);
+        tileObject.position = i + 1;
+        placedTiles.push(tileObject);
+    }
 
-    // let placedTiles = [];
-    // for (let i = 0; i < placements.length; i++) {
-    //     if (placements[i] === 9) {
-    //         placedTiles.push('empty');
-    //     }
-    //     else {
-    //         placedTiles.push(eightTiles[placements[i]]);
-    //     }
-    // }
+    // set shuffled tile positions in local storage
+    localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
 
-    // for (let i = 0; i < nineSpaces.length; i++) {
-    //     nineSpaces[i].append(placedTiles[i]);
-    // }
+    // generate the grid with the updated position data
+    generateThreeByThree();
 }
