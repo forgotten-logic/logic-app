@@ -98,7 +98,7 @@ function winOrLose() {
     if (user.gamesWon >= 1) {
         return true;
     }
-    else false;
+    else false; // currently not linked to any action/result - need to update to trigger //
 }
 
 export function renderResults() {
