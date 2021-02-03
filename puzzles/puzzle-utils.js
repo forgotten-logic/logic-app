@@ -1,5 +1,5 @@
 import { findById } from '../common/utils.js';
-import eightData from '../data/eight-data.js';
+
 // import { findById } from '../common/utils.js';
 
 function movementMap(position) {
@@ -15,8 +15,9 @@ function movementMap(position) {
 }
 
 export function checkIfMovable(selectedTile) {
-    let tile = findById(eightData, selectedTile);
-    let emptyTile = findById(eightData, `${'empty'}`);
+    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    let tile = findById(localStorageEightData, selectedTile);
+    let emptyTile = findById(localStorageEightData, 9);
     const moveable = movementMap(emptyTile.homePosition);
     if (moveable.includes(tile.homePosition)) {
         return true;
@@ -24,3 +25,22 @@ export function checkIfMovable(selectedTile) {
         return false;
     }
 }
+
+export function moveTilesOnClick(selectedTile) {
+    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+  
+    let emptyTile = localStorageEightData.find(tile => tile.id === 9);
+
+    let emptyhomePosition = emptyTile.homePosition;
+
+    const selectedTileObject = findById(localStorageEightData, selectedTile);
+
+    let selectedhomePosition = selectedTileObject.homePosition;
+
+    emptyTile.homePosition = selectedhomePosition;
+
+    selectedTileObject.homePosition = emptyhomePosition;
+
+    return localStorageEightData;
+}
+

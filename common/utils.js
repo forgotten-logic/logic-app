@@ -10,7 +10,6 @@ export function setInLocStorage(user) {
     localStorage.setItem(USER, JSON.stringify(user));
 }
 
-
 export function createUser(formData) {
     let user = pullFromLocStorage(USER);
     if (!formData.get('name') || !formData.get('avatar')) {
@@ -39,3 +38,4 @@ export function createUser(formData) {
 export function findById(someArray, id) {
     return someArray.find(item => item.id === id);
 }
+
