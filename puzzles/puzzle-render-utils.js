@@ -150,4 +150,6 @@ export function placeTilesRandomly(nineSpaces) {
     }
 }
 
+export function generatePuzzleInfo() {
 
+}

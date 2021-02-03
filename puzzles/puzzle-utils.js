@@ -116,7 +116,6 @@ export function renderResultsDisplay() {
         winLoseMessageEl.id = 'win-or-lose';
         const solvedEl = document.createElement('p');
         const endBtn = document.createElement('button');
-        const resetBtn = document.createElement('button');
 
         movesEl.id = 'user-moves';
         movesEl.classList.add('animate__animated', 'animate__bounce');
@@ -126,11 +125,8 @@ export function renderResultsDisplay() {
         solvedEl.textContent = 'Solved: ' + solvedCount;
 
         endBtn.textContent = 'End Game';
-        resetBtn.textContent = 'Play again?';
-        resetBtn.addEventListener('click', () => {
-            window.location = './';
-        });
-        return { endBtn, winLoseMessageEl, resultsContainer, solvedEl, resetBtn };
+
+        return { endBtn, winLoseMessageEl, resultsContainer, solvedEl };
     }
 
     function resultMessage(winState) {
