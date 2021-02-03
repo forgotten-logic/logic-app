@@ -28,6 +28,7 @@ export function checkIfMovable(selectedTile) {
 
 export function moveTilesOnClick(selectedTile) {
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+  
     let emptyTile = localStorageEightData.find(tile => tile.id === 9);
 
     let emptyhomePosition = emptyTile.homePosition;
@@ -40,10 +41,6 @@ export function moveTilesOnClick(selectedTile) {
 
     selectedTileObject.homePosition = emptyhomePosition;
 
-
     return localStorageEightData;
 }
-// if i click on tile with id of 6 that tile should get the homeposition equal to the current empty tile
-// the empty tile should get the homeposition of the tile we clicked
-// the tile with id of 9 is our dedicated empty tile 
-// tile 9s home position should change to the homeposition of what we clicked (ie tile with id of 6)
+
