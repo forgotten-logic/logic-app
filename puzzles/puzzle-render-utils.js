@@ -1,3 +1,4 @@
+import { findById } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
 
 import {
@@ -6,7 +7,8 @@ import {
     updateMovesCounter,
     setUserMoves,
     checkWinCondition,
-    renderNewResults
+    renderNewResults,
+    getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
 import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
@@ -119,35 +121,24 @@ export function generateEightTiles() {
     return tiles;
 }
 
-export function getArrayOfRandomNumbers(array) {
-    let placementArray = [];
+export function placeTilesRandomly() {
+    // get the array of tile objects from localStorage
+    const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
 
-    while (placementArray.length < array.length) {
-        let randomNumber = Math.floor(Math.random() * (array.length));
-        if (!placementArray.some(n => n === randomNumber)) {
-            placementArray.push(randomNumber);
-        }
-    }
-    return placementArray;
-}
-
-export function placeTilesRandomly(nineSpaces) {
-    const eightTiles = generateEightTiles();
-    const placements = getArrayOfRandomNumbers(eightTiles);
-    // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
-
+    // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
+    const placements = getArrayOfRandomNumbers(tileObjects);
+    
+    // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
-        if (placements[i] === 9) {
-            placedTiles.push('empty');
-        }
-        else {
-            placedTiles.push(eightTiles[placements[i]]);
-        }
+        const tileObject = tileObjects.find(tile => tile.id === placements[i]);
+        tileObject.position = i + 1;
+        placedTiles.push(tileObject);
     }
 
-    for (let i = 0; i < nineSpaces.length; i++) {
-        nineSpaces[i].append(placedTiles[i]);
-    }
+    // set shuffled tile positions in local storage
+    localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
+
+    // generate the grid with the updated position data
+    generateThreeByThree();
 }
-
