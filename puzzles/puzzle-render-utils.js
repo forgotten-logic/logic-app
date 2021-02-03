@@ -1,8 +1,9 @@
 import { pullFromLocStorage, setInLocStorage, USER } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
-import { moveTilesOnClick, checkIfMovable } from '../puzzles/puzzle-utils.js';
+import { moveTilesOnClick, checkIfMovable, checkWinCondition } from '../puzzles/puzzle-utils.js';
 
 localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
+const user = pullFromLocStorage(USER);
 
 // create a grid of nine squares on which the tiles will move
 const tileMap = document.getElementById('tile-map');
@@ -89,10 +90,16 @@ export function generateEightTiles() {
                     updateMovesCounter();
                     setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
+
+                    let solved = checkWinCondition(newTiles);
+                    
                     const stringyTiles = JSON.stringify(newTiles);
                     localStorage.setItem('EIGHTDATA', stringyTiles);
                     generateThreeByThree();
-
+                    if (solved === true) {
+                        user.gamesWon++;
+                        setInLocStorage(user);
+                    }
                 }
             });
         }

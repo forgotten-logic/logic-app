@@ -1,5 +1,5 @@
 import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
-
+import eightData from '../data/eight-data.js';
 import { checkIfMovable } from '../puzzles/puzzle-utils.js';
 
 const test = QUnit.test;
@@ -7,6 +7,7 @@ const test = QUnit.test;
 test('test movableTile function for true', (expect) => {
     //Arrange
     // Set up your arguments and expectations
+    localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
     const expected = true;
     const tiles = 6;
 
