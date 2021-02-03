@@ -104,13 +104,13 @@ export function generateEightTiles() {
                     const newTiles = moveTilesOnClick(selectedTile);
 
                     let solved = checkWinCondition(newTiles);
-
+                    setInLocStorage(user);
                     const stringyTiles = JSON.stringify(newTiles);
                     localStorage.setItem('EIGHTDATA', stringyTiles);
                     generateThreeByThree();
                     if (solved === true) {
                         user.gamesWon++;
-                        setInLocStorage(user);
+                        setInLocStorage(user);  
                         renderNewResults();
                     }
                 }
