@@ -9,6 +9,7 @@ const USER = 'USER';
 
 let user = pullFromLocStorage(USER);
 
+// tests passing
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 
@@ -33,6 +34,7 @@ const movementMap = {
     1: [2, 4],
 };
 
+// tests passing
 export function checkIfMovable(selectedTile) {
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
 
@@ -67,6 +69,7 @@ export function moveTilesOnClick(selectedTile) {
     return localStorageEightData;
 }
 
+// tests passing
 export function checkWinCondition(newTiles) {
 
     let condition = false;
