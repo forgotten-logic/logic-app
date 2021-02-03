@@ -64,15 +64,14 @@ test('It should return false when provided a set of tiles whose id property and 
     expect.equal(actual2, expected2);
 });
 
-// test
-// test('', (expect) => {
+// test moveTilesOnClick
+test('It should return a mutated array', (expect) => {
+    
+    localStorage.setItem();
     
     
-    
-//     const expected = true;
-//     const actual = true;
+    const expected = true;
+    const actual = true;
 
-    
-
-//     expect.equal(actual, expected);
-// });
+    expect.equal(actual, expected);
+});
