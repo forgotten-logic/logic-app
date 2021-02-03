@@ -21,9 +21,9 @@ test('test movableTile function for true', (expect) => {
 });
 
 test('It should return an array of random numbers equal to the length of the given array, with no number higher than the highest index in the given array, and no number repeated', (expect) => {
-    const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const testArray = [1, 2, 3, 4, 5, 6, 7, 8];
     const generatedArray = getArrayOfRandomNumbers(testArray);
-
+    
     // compare length to given
     const expected1 = true;
     const actual1 = generatedArray.length === testArray.length;

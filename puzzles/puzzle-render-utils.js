@@ -40,6 +40,7 @@ export function generateThreeByThree() {
         tileMap.append(spaces[i]);
     }
 
+
     return spaces;
 }
 
@@ -98,13 +99,11 @@ export function generateEightTiles() {
 
 }
 
-
-
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 	
     while (placementArray.length < array.length) {
-        let randomNumber = Math.ceil(Math.random() * array.length);
+        let randomNumber = Math.floor(Math.random() * (array.length));
         if (!placementArray.some(n => n === randomNumber)) {
             placementArray.push(randomNumber);
         }
@@ -112,11 +111,25 @@ export function getArrayOfRandomNumbers(array) {
     return placementArray;
 }
 
-// export function placeTilesRandomly() {
-//     const tileSpaces = generateThreeByThree();
-//     const placements = getArrayOfRandomNumbers(tileSpaces);
+export function placeTilesRandomly(nineSpaces) {
+    const eightTiles = generateEightTiles();
+    const placements = getArrayOfRandomNumbers(eightTiles);
+    // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
 
-// }
+    let placedTiles = [];
+    for (let i = 0; i < placements.length; i++) {
+        if (placements[i] === 9) {
+            placedTiles.push('empty');
+        }
+        else {
+            placedTiles.push(eightTiles[placements[i]]);
+        }
+    }    
+
+    for (let i = 0; i < nineSpaces.length; i++) {
+        nineSpaces[i].append(placedTiles[i]);
+    }
+}
 
 function setUserMoves() {
     const user = pullFromLocStorage(USER);
