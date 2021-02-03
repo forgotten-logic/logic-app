@@ -99,6 +99,7 @@ export function generateEightTiles() {
                     if (solved === true) {
                         user.gamesWon++;
                         setInLocStorage(user);
+                        solvedCount++
                     }
                 }
             });
