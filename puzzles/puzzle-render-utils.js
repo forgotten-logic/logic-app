@@ -118,18 +118,6 @@ export function generateEightTiles() {
     return tiles;
 }
 
-export function getArrayOfRandomNumbers(array) {
-    let placementArray = [];
-
-    while (placementArray.length < array.length) {
-        let randomNumber = Math.floor(Math.random() * (array.length));
-        if (!placementArray.some(n => n === randomNumber)) {
-            placementArray.push(randomNumber);
-        }
-    }
-    return placementArray;
-}
-
 export function placeTilesRandomly(nineSpaces) {
     const eightTiles = generateEightTiles();
     const placements = getArrayOfRandomNumbers(eightTiles);
@@ -149,4 +137,3 @@ export function placeTilesRandomly(nineSpaces) {
         nineSpaces[i].append(placedTiles[i]);
     }
 }
-

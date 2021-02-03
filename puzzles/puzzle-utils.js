@@ -9,6 +9,18 @@ const USER = 'USER';
 
 let user = pullFromLocStorage(USER);
 
+export function getArrayOfRandomNumbers(array) {
+    let placementArray = [];
+
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.floor(Math.random() * (array.length));
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
+    }
+    return placementArray;
+}
+
 function movementMap(position) {
     if (position === 9) return [6, 8];
     if (position === 8) return [5, 7, 9];

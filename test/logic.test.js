@@ -1,6 +1,5 @@
-import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
 import eightData from '../data/eight-data.js';
-import { checkIfMovable } from '../puzzles/puzzle-utils.js';
+import { checkIfMovable, getArrayOfRandomNumbers } from '../puzzles/puzzle-utils.js';
 
 const test = QUnit.test;
 
