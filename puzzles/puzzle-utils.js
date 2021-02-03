@@ -72,8 +72,6 @@ export function checkWinCondition(newTiles) {
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
-        // console.log(tile.position);
-        // console.log(tile.id);
         if (tile.position !== tile.id) {
             condition = false;
             return false;
@@ -127,7 +125,6 @@ export function renderResultsDisplay() {
             winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
         });
         resultMessage(winState);
-
     });
 
     resultsContainer.append(movesEl, solvedEl, endBtn, winLoseMessageEl, resetBtn);
