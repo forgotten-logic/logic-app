@@ -60,3 +60,9 @@ p {
 	font-size: 1.3rem;
 	text-align: center;
 }
+
+.puzzleInfo {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}

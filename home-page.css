@@ -3,7 +3,6 @@ body {
     image-rendering: auto;
 }
 
-
 h1 {
     width: 200px;
 }
@@ -147,19 +146,6 @@ button:hover::after, button:focus::after {
     animation: none;
     display: none;
 } 
-
-
-footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: var(--footer-height);
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    box-shadow: var(--shadow);
-}
-
 
 @font-face {
     font-family: 'puzzleregular';
