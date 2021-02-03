@@ -10,6 +10,10 @@ export function setInLocStorage(user) {
     localStorage.setItem(USER, JSON.stringify(user));
 }
 
+export function clearLocStorage() {
+    localStorage.clear();
+}
+
 export function createUser(formData) {
     let user = pullFromLocStorage(USER);
     if (!formData.get('name') || !formData.get('avatar')) {
@@ -17,7 +21,7 @@ export function createUser(formData) {
             name: 'anonymous',
             avatar: 'booger',
             moves: 0,
-            wins: 0
+            gamesWon: 0
         };
 
         setInLocStorage(user);
