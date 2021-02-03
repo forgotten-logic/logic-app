@@ -72,12 +72,13 @@ export function checkWinCondition(newTiles) {
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
-
-        if (tile.position === tile.id) {
-            condition = true;
-        }
-        else {
+        console.log(tile.position);
+        console.log(tile.id);
+        if (tile.position !== tile.id) {
             condition = false;
+            return false;
+        } else {
+            condition = true;
         }
     }
     return condition;
