@@ -51,8 +51,22 @@ export function moveTilesOnClick(selectedTile) {
     return localStorageEightData;
 }
 
-export function checkWinCondition() {
+export function checkWinCondition(newTiles){
+      
+    let condition = false;
+    for (let i = 1; i < newTiles.length + 1; i++){
+        let tile = newTiles.find(item => item.position === i);
 
+        if (tile.position === tile.id){
+            condition = true;
+            
+           
+        } else {
+            condition = false;
+            
+        }
+    }
+    return condition;
 }
 
 const movesEl = document.createElement('p');
@@ -132,4 +146,23 @@ export function renderResultsDisplay() {
     }
 }
 
+
+
+export function checkWinCondition(newTiles){
+      
+    let condition = false;
+    for (let i = 1; i < newTiles.length + 1; i++){
+        let tile = newTiles.find(item => item.position === i);
+
+        if (tile.position === tile.id){
+            condition = true;
+            
+           
+        } else {
+            condition = false;
+            
+        }
+    }
+    return condition;
+}
 
