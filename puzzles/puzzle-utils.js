@@ -51,19 +51,19 @@ export function moveTilesOnClick(selectedTile) {
     return localStorageEightData;
 }
 
-export function checkWinCondition(newTiles){
-      
+export function checkWinCondition(newTiles) {
+
     let condition = false;
-    for (let i = 1; i < newTiles.length + 1; i++){
+    for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
 
-        if (tile.position === tile.id){
+        if (tile.position === tile.id) {
             condition = true;
-            
-           
+
+
         } else {
             condition = false;
-            
+
         }
     }
     return condition;
@@ -71,7 +71,7 @@ export function checkWinCondition(newTiles){
 
 const movesEl = document.createElement('p');
 
-let solvedCount = 1;
+let solvedCount = 0;
 let movesCount = 0;
 
 export function updateMovesCounter() {
@@ -85,12 +85,11 @@ export function setUserMoves() {
 }
 
 function winOrLose() {
-    if (user.gamesWon >= 1) {
+    if (solvedCount >= 1) { // UPDATE BACK TO USER.GAMESWON ONCE CHECK IF SOLVED IS READY //
         return true;
     }
     else false;
 }
-
 
 export function renderResultsDisplay() {
     const { endBtn, winLoseMessageEl, resultsContainer, solvedEl, resetBtn } = createResultsDisplay();
@@ -108,7 +107,6 @@ export function renderResultsDisplay() {
         resultMessage(winState);
 
     });
-
 
     resultsContainer.append(movesEl, solvedEl, endBtn, winLoseMessageEl, resetBtn);
 
@@ -136,33 +134,12 @@ export function renderResultsDisplay() {
     }
 
     function resultMessage(winState) {
-        if (winState === false) {
-            winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
+        if (winState === true) {
+            winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
         }
         else {
-            winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
+            winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
         }
         return winLoseMessageEl;
     }
 }
-
-
-
-export function checkWinCondition(newTiles){
-      
-    let condition = false;
-    for (let i = 1; i < newTiles.length + 1; i++){
-        let tile = newTiles.find(item => item.position === i);
-
-        if (tile.position === tile.id){
-            condition = true;
-            
-           
-        } else {
-            condition = false;
-            
-        }
-    }
-    return condition;
-}
-
