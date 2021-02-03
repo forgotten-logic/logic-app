@@ -1,4 +1,18 @@
+body {
+/* SCSS HSL */
+	--color1: hsla(4, 79%, 59%, 1); /*fire-opal*/
+	--color2: hsla(35, 61%, 90%, 1); /*antique-white*/
+	--color3: hsla(174, 59%, 56%, 1); /*medium-turquoise*/
+	--color4: hsla(166, 16%, 26%, 1); /*dark-slate-gray*/
+	--color5: hsla(0, 0%, 0%, 1); /*black*/
+}
+
+main {
+	position: relative;
+}
+
 .tile-map {
+	margin: 5em;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -7,10 +21,11 @@
 }
 
 .space {
-	border: 1px solid black;
+	border: 1px solid var(--color5);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 10px;
 }
 
 .tile {
@@ -20,4 +35,28 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 10px;
+}
+
+p {
+	font-size: 25px;
+}
+
+#win-or-lose {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	width: 20%;
+	height: 100px;
+	padding: 5px;
+	background-color: var(--color1);
+	color: var(--color5);
+	border: 2px dotted var(--color4);
+	border-radius: 10px;
+	box-shadow: 5px 5px 50px var(--color3);
+	font-size: 1.3rem;
+	text-align: center;
 }
