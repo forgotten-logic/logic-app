@@ -1,6 +1,15 @@
-import { pullFromLocStorage, setInLocStorage, USER } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
-import { moveTilesOnClick, checkIfMovable, checkWinCondition } from '../puzzles/puzzle-utils.js';
+
+import {
+    moveTilesOnClick,
+    checkIfMovable,
+    updateMovesCounter,
+    setUserMoves,
+    checkWinCondition
+} from '../puzzles/puzzle-utils.js';
+
+
+
 
 localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
 const user = pullFromLocStorage(USER);
@@ -30,6 +39,8 @@ const spaces = [
     pos8,
     pos9
 ];
+
+
 export function generateThreeByThree() {
 
     const tiles = generateEightTiles();
@@ -42,7 +53,6 @@ export function generateThreeByThree() {
         if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
-
 
     return spaces;
 }
@@ -62,7 +72,7 @@ export function generateEightTiles() {
     const tile7 = document.createElement('div');
     const tile8 = document.createElement('div');
     const tile9 = document.createElement('div');
-    
+
     const tiles = [
         tile1,
         tile2,
@@ -83,10 +93,10 @@ export function generateEightTiles() {
             tiles[i].classList.add('tile');
             tiles[i].id = tileData.id;
             tiles[i].textContent = tileData.id;
-            tiles[i].addEventListener('click', () => {    
-      
+            tiles[i].addEventListener('click', () => {
+
                 const selectedTile = tileData.id;
-                if (checkIfMovable(selectedTile) === true){  
+                if (checkIfMovable(selectedTile) === true) {
                     updateMovesCounter();
                     setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
@@ -106,7 +116,6 @@ export function generateEightTiles() {
         }
 
     }
-    // console.log(localStorageEightData);
     return tiles;
 }
 
@@ -135,47 +144,10 @@ export function placeTilesRandomly(nineSpaces) {
         else {
             placedTiles.push(eightTiles[placements[i]]);
         }
-    }    
+    }
 
     for (let i = 0; i < nineSpaces.length; i++) {
         nineSpaces[i].append(placedTiles[i]);
     }
 }
 
-function setUserMoves() {
-    const user = pullFromLocStorage(USER);
-    user.moves++;
-    setInLocStorage(user);
-}
-
-const resultsContainer = document.getElementById('results-display');
-// const winLoseMessageEl = document.createElement('p');
-const movesEl = document.createElement('p');
-const solveEl = document.createElement('p');
-
-export function renderResultsDisplay() {
-    const user = pullFromLocStorage(USER);
-
-    // render and track user moves in movesEl //
-    movesEl.id = 'user-moves';
-    movesEl.classList.add('animate__animated', 'animate__bounce');
-    movesEl.textContent = 'Moves: ' + movesCount;
-
-    // render and track user's win results in winEl //
-    solveEl.id = 'user-solved';
-    solveEl.textContent = 'Solved: ' + 'Solved Count Goes Here';
-    // update user wins in LS upon game submit //
-
-
-    setInLocStorage(user);
-    // append results display elements to resultsContainer //
-    resultsContainer.append(movesEl, solveEl);
-    // display hidden winLoseMessageEl upon game completion. Overlay game board with pop-up result message //
-
-}
-
-let movesCount = 0;
-function updateMovesCounter() {
-    movesCount++;
-    movesEl.textContent = 'Moves: ' + movesCount;
-}
