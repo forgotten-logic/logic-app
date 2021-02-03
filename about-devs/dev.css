@@ -1,0 +1,86 @@
+body {
+
+}
+
+.about-header {
+    margin-left: 1em;
+    font-size: 40px;
+    font-family: 'puzzleCryptoregular';
+}
+
+.about-header:hover {
+    font-family: 'puzzleregular';
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: 'puzzleregular';
+    font-size: 55px;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    width: 250px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 0 0 123px 123px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.about-div {
+    border: 1px solid black;
+}
+
+.name-title{
+    color: antiquewhite;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.anthony {
+    background-color: #2944dbaf;
+}
+
+.devon {
+    background-color: #1EA896;
+}
+
+.vance {
+    background-color: #FF715B;
+}
+
+.julianne {
+    background-color: #4C5454;
+}
+
+@font-face {
+    font-family: 'puzzleregular';
+    src: url('../assets/fonts/puzzlefade-webfont.woff2') format('woff2'),
+         url('../assets/fonts/puzzlefade-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'puzzleCryptoregular';
+    src: url('../assets/fonts/puzzle_font-webfont.woff2') format('woff2'),
+         url('../assets/fonts/puzzle_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

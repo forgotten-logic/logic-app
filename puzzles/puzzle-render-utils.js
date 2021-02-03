@@ -46,7 +46,6 @@ export function generateThreeByThree() {
     return spaces;
 }
 
-
 // get 8 numbered tiles; returns an array of tiles
 export function generateEightTiles() {
     const oldtiles = document.querySelectorAll('.tile');
@@ -100,7 +99,6 @@ export function generateEightTiles() {
     }
     // console.log(localStorageEightData);
     return tiles;
-
 }
 
 export function getArrayOfRandomNumbers(array) {
