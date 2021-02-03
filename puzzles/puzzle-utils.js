@@ -139,3 +139,10 @@ export function renderResultsDisplay() {
         return winLoseMessageEl;
     }
 }
+
+
+export function renderNewResults(){
+    solvedCount++;
+    const solvedResults = document.getElementById('user-solved');
+    solvedResults.textContent = 'Solved: ' + solvedCount;
+}
