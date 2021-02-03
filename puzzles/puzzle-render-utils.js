@@ -30,15 +30,18 @@ export function generateThreeByThree() {
         pos9
     ];
 
+    // commented out while working with random placement function
     // const tiles = generateEightTiles();
 
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
+        // commented out while working with random placement function
         // if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
 
+    // returns an array of divs
     return spaces;
 }
 
@@ -93,10 +96,7 @@ export function getArrayOfRandomNumbers(array) {
 export function placeTilesRandomly(nineSpaces) {
     const eightTiles = generateEightTiles();
     const placements = getArrayOfRandomNumbers(eightTiles);
-    // will return something like [2, 5, 7, 3, 1, 4, 6, 8]
-    console.log('nineSpaces: ', nineSpaces);
-    console.log('placements: ', placements);
-    console.log('eightTiles: ', eightTiles);
+    // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
 
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
@@ -106,9 +106,7 @@ export function placeTilesRandomly(nineSpaces) {
         else {
             placedTiles.push(eightTiles[placements[i]]);
         }
-    }
-    console.log('later placement read: ', placements);
-    
+    }    
 
     for (let i = 0; i < nineSpaces.length; i++) {
         nineSpaces[i].append(placedTiles[i]);

@@ -26,11 +26,11 @@ test('It should return an array of random numbers equal to the length of the giv
     
     // compare length to given
     const expected1 = true;
-    const actual1 = generatedArray.length === testArray.length + 1;
+    const actual1 = generatedArray.length === testArray.length;
 
     // check that all values lower than length of given
     const expected2 = true;
-    const actual2 = generatedArray.every(n => n <= testArray.length + 1);
+    const actual2 = generatedArray.every(n => n <= testArray.length);
 
     // check that no numbers are equal to each other
     const expected3 = true;
