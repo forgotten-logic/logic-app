@@ -36,6 +36,11 @@ div {
     border-radius: 0 0 123px 123px;
 }
 
+.logos {
+    width: 60px;
+    height: 40px;
+}
+
 .container {
     display: flex;
     flex-direction: row;

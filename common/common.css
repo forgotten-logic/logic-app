@@ -49,12 +49,12 @@ main {
 	line-height: 45px;
 	padding: 0 14px;
 	text-decoration: none;
-	color: #EBEBEB;
+	color: #ffffff;
 	font-size: 25px;
 }
 
 #menu li a:hover {
-	color: #208FAB;
+	color:  rgba(0,255,203,.64);
 	background: #384D48;
 }
 
