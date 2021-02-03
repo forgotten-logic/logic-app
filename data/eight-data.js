@@ -50,11 +50,12 @@ const eightData = [
         left: baseLine,
     },
     {
-        id: 'empty',
+        id: 9,
+        isEmpty: true,
         homePosition: 9,
         top: baseLine * 2,
         left: baseLine * 2,
-    }
+    } 
 ];
 
 export default eightData;
