@@ -92,30 +92,27 @@ function winOrLose() {
 }
 
 export function renderResultsDisplay() {
-    const { endBtn, winLoseMessageEl, resultsContainer, solvedEl, resetBtn } = createResultsDisplay();
+    const { winLoseMessageEl, resultsContainer, solvedEl } = createResultsDisplay();
 
     setInLocStorage(user);
-    endBtn.addEventListener('click', () => {
-        let winState = winOrLose();
 
-        winLoseMessageEl.style.display = 'flex';
-        winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
-        winLoseMessageEl.addEventListener('animationend', () => {
-            winLoseMessageEl.classList.remove('animate__zoomInUp');
-            winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
-        });
-        resultMessage(winState);
+    let winState = winOrLose();
 
+    winLoseMessageEl.style.display = 'flex';
+    winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
+    winLoseMessageEl.addEventListener('animationend', () => {
+        winLoseMessageEl.classList.remove('animate__zoomInUp');
+        winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
     });
+    resultMessage(winState);
 
-    resultsContainer.append(movesEl, solvedEl, endBtn, winLoseMessageEl, resetBtn);
+    resultsContainer.append(movesEl, solvedEl, winLoseMessageEl);
 
     function createResultsDisplay() {
         const resultsContainer = document.getElementById('results-display');
         const winLoseMessageEl = document.createElement('p');
         winLoseMessageEl.id = 'win-or-lose';
         const solvedEl = document.createElement('p');
-        const endBtn = document.createElement('button');
 
         movesEl.id = 'user-moves';
         movesEl.classList.add('animate__animated', 'animate__bounce');
@@ -124,9 +121,7 @@ export function renderResultsDisplay() {
         solvedEl.id = 'user-solved';
         solvedEl.textContent = 'Solved: ' + solvedCount;
 
-        endBtn.textContent = 'End Game';
-
-        return { endBtn, winLoseMessageEl, resultsContainer, solvedEl };
+        return { winLoseMessageEl, resultsContainer, solvedEl };
     }
 
     function resultMessage(winState) {
@@ -141,7 +136,7 @@ export function renderResultsDisplay() {
 }
 
 
-export function renderNewResults(){
+export function renderNewResults() {
     solvedCount++;
     const solvedResults = document.getElementById('user-solved');
     solvedResults.textContent = 'Solved: ' + solvedCount;
