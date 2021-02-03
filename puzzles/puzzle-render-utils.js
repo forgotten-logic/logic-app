@@ -9,12 +9,11 @@ import {
 } from '../puzzles/puzzle-utils.js';
 
 import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
-const USER = 'USER';
-const user = pullFromLocStorage(USER);
+// const USER = 'USER';
+// const user = pullFromLocStorage(USER);
 const EIGHTDATA = 'EIGHTDATA';
 
 setInLocStorage(EIGHTDATA, eightData);
-
 
 // create a grid of nine squares on which the tiles will move
 const tileMap = document.getElementById('tile-map');
@@ -100,24 +99,20 @@ export function generateEightTiles() {
                 if (checkIfMovable(selectedTile) === true) {
                     const newTiles = moveTilesOnClick(selectedTile);
 
-                    if (user.moves >= 1) {
-                        let solved = checkWinCondition(newTiles);
+                    let solved = checkWinCondition(newTiles);
 
-                        updateAndSetUserMoves();
-                        setInLocStorage(EIGHTDATA, newTiles);
-                        generateThreeByThree();
-                        if (solved === true) {
-                            renderResults();
-                        }
+                    updateAndSetUserMoves();
+                    setInLocStorage(EIGHTDATA, newTiles);
+                    generateThreeByThree();
+                    if (solved === true) {
+                        renderResults();
                     }
                 }
             });
         }
-
+        return tiles;
     }
-    return tiles;
 }
-
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 

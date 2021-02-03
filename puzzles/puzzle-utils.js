@@ -25,23 +25,26 @@ movesEl.id = 'user-moves';
 movesEl.classList.add('animate__animated', 'animate__bounce');
 movesEl.textContent = 'Moves: ' + movesCount;
 
-function movementMap(position) {
-    if (position === 9) return [6, 8];
-    if (position === 8) return [5, 7, 9];
-    if (position === 7) return [4, 8];
-    if (position === 6) return [3, 5, 9];
-    if (position === 5) return [2, 4, 6, 8];
-    if (position === 4) return [1, 5, 7];
-    if (position === 3) return [2, 6];
-    if (position === 2) return [1, 3, 5];
-    if (position === 1) return [2, 4];
-}
+const movementMap = {
+    9: [6, 8],
+    8: [5, 7, 9],
+    7: [4, 8],
+    6: [3, 5, 9],
+    5: [2, 4, 6, 8],
+    4: [1, 5, 7],
+    3: [2, 6],
+    2: [1, 3, 5],
+    1: [2, 4],
+};
 
 export function checkIfMovable(selectedTile) {
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
+
     let emptyTile = findById(localStorageEightData, 9);
-    const moveable = movementMap(emptyTile.position);
+    let position = emptyTile.position;
+    const moveable = movementMap[position];
+
     if (moveable.includes(tile.position)) {
         return true;
     } else {
@@ -72,8 +75,8 @@ export function checkWinCondition(newTiles) {
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
-        console.log(tile.position);
-        console.log(tile.id);
+        // console.log(tile.position);
+        // console.log(tile.id);
         if (tile.position !== tile.id) {
             condition = false;
             return false;
