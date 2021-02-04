@@ -1,5 +1,5 @@
 import eightData from '../data/eight-data.js';
-
+import { eightPuzzle, puzzleDescription } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -146,5 +146,11 @@ export function placeTilesRandomly(nineSpaces) {
 }
 
 export function generatePuzzleInfo() {
+    let puzzleInfo = document.getElementById('puzzle-info');
+    let puzzleTitle = document.createElement('h2');
 
+    puzzleTitle.id = 'puzzle-name';
+    puzzleTitle.textContent = eightPuzzle.name;
+
+    puzzleInfo.append(puzzleTitle, puzzleDescription);
 }
