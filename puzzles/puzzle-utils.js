@@ -10,23 +10,33 @@ const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 
+function removeRandomEmpty(anArray) {
+    let arrayWithout = anArray.slice();
+
+    let index = arrayWithout.indexOf(9);
+    if (index > -1) {
+        arrayWithout.splice(index, 1);
+    }
+    return arrayWithout;
+}
+
 function isSolvable(anArray) {
     let inversions = 0;
-    for (let i = 0; i < anArray.length; i++){
-        for (let j = i + 1; j < anArray.length; j++) {
-            if ((anArray[i] && anArray[j]), anArray[i] > anArray[j]) {
+    let anArrayWithoutEmpty = removeRandomEmpty(anArray);
+    for (let i = 0; i < anArrayWithoutEmpty.length; i++){
+        for (let j = i + 1; j < anArrayWithoutEmpty.length; j++) {
+            if ((anArrayWithoutEmpty[i] && anArrayWithoutEmpty[j]), anArrayWithoutEmpty[i] > anArrayWithoutEmpty[j]) {
                 inversions++;
             }
         }
     }
-    let evenInverions = (inversions / 2);
-    return evenInverions;
+    let evenInversions = (inversions / 2);
+    return evenInversions;
 }
 
 // test passing
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
-
     while (placementArray.length < array.length) {
         let randomNumber = Math.ceil(Math.random() * (array.length));
         if (!placementArray.some(n => n === randomNumber)) {
@@ -34,14 +44,13 @@ export function getArrayOfRandomNumbers(array) {
         }
     }
     let testy = isSolvable(placementArray);
-    console.log(testy);
-    while (Number.isInteger(testy)){
+    if (Number.isInteger(testy) === true){
         return placementArray;
+    } else {
+        return getArrayOfRandomNumbers(array);
     }
 
-    return getArrayOfRandomNumbers(array);
 }
-
 
 // GENERATED RESULTS DOM ELEMENTS //
 let solvedCount = 0;
