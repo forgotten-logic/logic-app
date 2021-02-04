@@ -160,6 +160,7 @@ input[type="radio"]:checked + img {
     position: relative;
     padding: 10px;
     margin-left: 5em;
+    margin-bottom: 10px;
 }
   
 button::before {
