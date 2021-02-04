@@ -119,20 +119,6 @@ export function generatePuzzleInfo() {
     
 }
 
-// function isSolvable(anArray) {
-//     let inversions = 0;
-//     for (let i = 0; i < anArray.length; i++){
-//         for (let ii = i + 1; ii < anArray.length; i++) {
-//             if (anArray[i] > anArray[ii]) {
-//                 inversions++;
-//             }
-//         }
-//     }
-//     let evenInverions = (inversions / 2);
-
-//     return evenInverions;
-// }
-
 export function placeTilesRandomly() {
 
     // get the array of tile objects from localStorage
