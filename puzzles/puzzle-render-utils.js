@@ -1,6 +1,6 @@
 import eightData from '../data/eight-data.js';
-import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
-import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
+import { setInLocStorage, pullFromLocStorage, findById } from '../common/utils.js';
+import { eightPuzzle, fifteenPuzzle, masterPuzzleInfo, wikiLink } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -95,7 +95,7 @@ export function generateEightTiles() {
     ];
 
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
-    
+
     // loop through tiles and add properties and functionality
     for (let i = 0; i < localStorageEightData.length; i++) {
         const tileData = localStorageEightData.find(item => item.position === i + 1);
@@ -104,7 +104,7 @@ export function generateEightTiles() {
             tiles[i].classList.add('tile');
             tiles[i].id = tileData.id;
             tiles[i].textContent = tileData.id;
-            
+
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
                 const selectedTile = tileData.id;
@@ -115,7 +115,7 @@ export function generateEightTiles() {
                     updateAndSetUserMoves();
                     setInLocStorage(EIGHTDATA, newTiles);
                     generateThreeByThree();
-                    
+
                     if (solved === true) {
                         renderResults();
                     }
@@ -148,7 +148,7 @@ export function placeTilesRandomly() {
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-    
+
     // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
@@ -162,4 +162,5 @@ export function placeTilesRandomly() {
 
     // generate the grid with the updated position data
     generateThreeByThree();
-} 
+}
+
