@@ -39,14 +39,20 @@ article {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     margin: 3rem;
     width: 250px;
     height: 300px;
     border: 1px solid black;
     border-radius: 0 0 123px 123px;
     box-shadow: 0 0 3pt 2pt rgba(0, 0, 0, 0.993);
+    position: relative;
 }
 
+p {
+    margin-top: 5em; 
+    font-family: 'Kalam', cursive;
+}
 
 .logos {
     margin-left: 1.5em;
@@ -67,6 +73,7 @@ article {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 3em;
 }
 
 article.julianne .logo-container:last-child a:last-of-type {
@@ -75,7 +82,13 @@ article.julianne .logo-container:last-child a:last-of-type {
     border-radius: 5px;
     background-color: var(--color1);
     padding: 3px;
+    margin-bottom: 3em;
 
+}
+
+.portfolio {
+    position: absolute;
+    top: 250px;
 }
 
 .about-div {
@@ -85,6 +98,9 @@ article.julianne .logo-container:last-child a:last-of-type {
 .name-title{
     color: antiquewhite;
     font-family: 'Shadows Into Light', cursive;
+    position: absolute;
+    top: .5px;
+    left: 100px;
 }
 
 .anthony {
