@@ -41,6 +41,7 @@ article {
     align-items: center;
     text-align: center;
     margin: 3rem;
+    padding: 5px;
     width: 250px;
     height: 300px;
     border: 1px solid black;
