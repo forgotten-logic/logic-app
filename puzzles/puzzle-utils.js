@@ -10,7 +10,20 @@ const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 
-// tests passing
+function isSolvable(anArray) {
+    let inversions = 0;
+    for (let i = 0; i < anArray.length; i++){
+        for (let j = i + 1; j < anArray.length; j++) {
+            if ((anArray[i] && anArray[j]), anArray[i] > anArray[j]) {
+                inversions++;
+            }
+        }
+    }
+    let evenInverions = (inversions / 2);
+    return evenInverions;
+}
+
+// test passing
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 
@@ -20,8 +33,15 @@ export function getArrayOfRandomNumbers(array) {
             placementArray.push(randomNumber);
         }
     }
-    return placementArray;
+    let testy = isSolvable(placementArray);
+    console.log(testy);
+    while (Number.isInteger(testy)){
+        return placementArray;
+    }
+
+    return getArrayOfRandomNumbers(array);
 }
+
 
 // GENERATED RESULTS DOM ELEMENTS //
 let solvedCount = 0;

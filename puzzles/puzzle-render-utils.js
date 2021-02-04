@@ -1,5 +1,6 @@
 import eightData from '../data/eight-data.js';
 import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
+import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -9,8 +10,9 @@ import {
     getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
-// const USER = 'USER';
-// const user = pullFromLocStorage(USER);
+
+import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
+
 const EIGHTDATA = 'EIGHTDATA';
 
 setInLocStorage(EIGHTDATA, eightData);
@@ -115,17 +117,29 @@ export function generateEightTiles() {
     return tiles;
 }
 
-// export function generatePuzzleInfo() {
+export function generatePuzzleInfo() {
+    let puzzleInfo = document.getElementById('puzzle-info');
+    let puzzleTitle = document.createElement('h2');
+    let puzzleDescription = document.createElement('p');
 
-// }
+    puzzleTitle.id = 'puzzle-name';
+    puzzleTitle.textContent = eightPuzzle.name;
+
+    puzzleDescription.id = 'description';
+    puzzleDescription.innerHTML = eightPuzzle.description;
+    puzzleDescription.append(wikiLink);
+
+    puzzleInfo.append(puzzleTitle, puzzleDescription);
+}
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
+
     const tileObjects = JSON.parse(localStorage.getItem(EIGHTDATA));
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-
+    
     // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
@@ -133,7 +147,7 @@ export function placeTilesRandomly() {
         tileObject.position = i + 1;
         placedTiles.push(tileObject);
     }
-    
+
     // set shuffled tile positions in local storage
     localStorage.setItem(EIGHTDATA, JSON.stringify(placedTiles));
 
