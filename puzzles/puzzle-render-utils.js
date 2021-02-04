@@ -115,44 +115,32 @@ export function generateEightTiles() {
     return tiles;
 }
 
+export function generatePuzzleInfo() {
+    
+}
 
-// export function placeTilesRandomly(nineSpaces) {
-//     const eightTiles = generateEightTiles();
-//     const placements = getArrayOfRandomNumbers(eightTiles);
-//     // will return something like [2, 6, 0, 3, 5, 7, 1, 4]
-
-//     // make an array of tile objects with positions updated to reflect the random array
-//     let placedTiles = [];
-//     for (let i = 0; i < placements.length; i++) {
-//         const tileObject = tileObjects.find(tile => tile.id === placements[i]);
-//         tileObject.position = i + 1;
-//         placedTiles.push(tileObject);
-//         for (let i = 0; i < placements.length; i++) {
-//             if (placements[i] === 9) {
-//                 placedTiles.push('empty');
+// function isSolvable(anArray) {
+//     let inversions = 0;
+//     for (let i = 0; i < anArray.length; i++){
+//         for (let ii = i + 1; ii < anArray.length; i++) {
+//             if (anArray[i] > anArray[ii]) {
+//                 inversions++;
 //             }
-//             else {
-//                 placedTiles.push(eightTiles[placements[i]]);
-//             }
-//         }
-
-//         for (let i = 0; i < nineSpaces.length; i++) {
-//             nineSpaces[i].append(placedTiles[i]);
 //         }
 //     }
+//     let evenInverions = (inversions / 2);
+
+//     return evenInverions;
 // }
 
-export function generatePuzzleInfo() {
-
-}
 export function placeTilesRandomly() {
 
     // get the array of tile objects from localStorage
     const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
-
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-
+    // let testy = isSolvable(placements);
+    // console.log(testy);
     // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
