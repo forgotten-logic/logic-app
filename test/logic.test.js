@@ -5,11 +5,12 @@ const test = QUnit.test;
 
 // test checkIfMovable
 test('test movableTile function for true', (expect) => {
+    let clickedStart = true;
     localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
     const expected = true;
     const tiles = 6;
 
-    const actual = checkIfMovable(tiles);
+    const actual = checkIfMovable(tiles, clickedStart);
 
     expect.equal(actual, expected);
 });
