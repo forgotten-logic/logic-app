@@ -1,9 +1,7 @@
 export const USER = 'USER';
 
 export function pullFromLocStorage(key) {
-
     return JSON.parse(localStorage.getItem(key));
-
 }
 
 export function setInLocStorage(magicKey, key2) {
@@ -36,10 +34,8 @@ export function createUser(formData) {
         };
         setInLocStorage(USER, user);
     }
-
 }
 
 export function findById(someArray, id) {
     return someArray.find(item => item.id === id);
 }
-

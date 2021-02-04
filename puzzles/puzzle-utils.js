@@ -115,7 +115,7 @@ export function clearUserMoves() {
     setInLocStorage(USER, user);
 }
 
-function winOrLose() {
+export function winOrLose() {
     if (user.gamesWon >= 1) {
         return true;
     }

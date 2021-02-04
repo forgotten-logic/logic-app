@@ -121,7 +121,7 @@ export function generateEightTiles() {
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
-    const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const tileObjects = JSON.parse(localStorage.getItem(EIGHTDATA));
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
@@ -135,7 +135,7 @@ export function placeTilesRandomly() {
     }
     
     // set shuffled tile positions in local storage
-    localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
+    localStorage.setItem(EIGHTDATA, JSON.stringify(placedTiles));
 
     // generate the grid with the updated position data
     generateThreeByThree();
