@@ -1,5 +1,5 @@
 import eightData from '../data/eight-data.js';
-import { eightPuzzle, puzzleDescription } from '../data/puzzle-info.js';
+import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -118,9 +118,14 @@ export function generateEightTiles() {
 export function generatePuzzleInfo() {
     let puzzleInfo = document.getElementById('puzzle-info');
     let puzzleTitle = document.createElement('h2');
+    let puzzleDescription = document.createElement('p');
 
     puzzleTitle.id = 'puzzle-name';
     puzzleTitle.textContent = eightPuzzle.name;
+
+    puzzleDescription.id = 'description';
+    puzzleDescription.innerHTML = eightPuzzle.description;
+    puzzleDescription.append(wikiLink);
 
     puzzleInfo.append(puzzleTitle, puzzleDescription);
 }
