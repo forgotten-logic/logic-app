@@ -1,4 +1,4 @@
-import { generateThreeByThree, placeTilesRandomly } from './puzzle-render-utils.js';
+import { generateThreeByThree, placeTilesRandomly, generatePuzzleInfo } from './puzzle-render-utils.js';
 import { clearUserMoves } from './puzzle-utils.js';
 
 
@@ -14,4 +14,5 @@ startButton.addEventListener('click', () => {
     startButton.textContent = 'Shuffle tiles and start again?';
 });
 
+generatePuzzleInfo();
 generateThreeByThree();

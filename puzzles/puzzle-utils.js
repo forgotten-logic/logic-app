@@ -10,6 +10,20 @@ const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 
+function isSolvable(anArray) {
+    let inversions = 0;
+    for (let i = 0; i < anArray.length; i++){
+        for (let j = i + 1; j < anArray.length; j++) {
+            if ((anArray[i] && anArray[j]), anArray[i] > anArray[j]) {
+                inversions++;
+            }
+        }
+    }
+    let evenInverions = (inversions / 2);
+    return evenInverions;
+}
+
+// test passing
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 
@@ -19,8 +33,15 @@ export function getArrayOfRandomNumbers(array) {
             placementArray.push(randomNumber);
         }
     }
-    return placementArray;
+    let testy = isSolvable(placementArray);
+    console.log(testy);
+    while (Number.isInteger(testy)){
+        return placementArray;
+    }
+
+    return getArrayOfRandomNumbers(array);
 }
+
 
 // GENERATED RESULTS DOM ELEMENTS //
 let solvedCount = 0;
@@ -49,6 +70,7 @@ const movementMap = {
     1: [2, 4],
 };
 
+// test passing
 export function checkIfMovable(selectedTile) {
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
@@ -64,6 +86,7 @@ export function checkIfMovable(selectedTile) {
     }
 }
 
+// test passing
 export function moveTilesOnClick(selectedTile) {
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
 
@@ -82,13 +105,12 @@ export function moveTilesOnClick(selectedTile) {
     return localStorageEightData;
 }
 
+// tests passing
 export function checkWinCondition(newTiles) {
 
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
-        // console.log(tile.position);
-        // console.log(tile.id);
         if (tile.position !== tile.id) {
             condition = false;
             return false;
@@ -113,7 +135,7 @@ export function clearUserMoves() {
     setInLocStorage(USER, user);
 }
 
-function winOrLose() {
+export function winOrLose() {
     if (user.gamesWon >= 1) {
         return true;
     }
