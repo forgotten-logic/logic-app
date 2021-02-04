@@ -68,14 +68,6 @@ main {
 	background: var(--color4);
 }
 
-footer > a {
-	text-decoration: none;
-}
-
-footer > p {
-	margin: 0;
-}
-
 footer {
 	display: flex;
     justify-content: flex-end;
