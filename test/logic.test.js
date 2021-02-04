@@ -65,7 +65,7 @@ test('It should return false when provided a set of tiles whose id property and 
 });
 
 // test moveTilesOnClick
-test('It should return a mutated array', (expect) => {
+test('It should return a mutated array, with the position of the selected tile and the empty tile swapped', (expect) => {
     const tiles = [{ 'id':7, 'position':1 }, { 'id':1, 'position':2 }, { 'id':3, 'position':3 }, { 'id':8, 'position':4 }, { 'id':9, 'isEmpty':true, 'position':5 }, { 'id':2, 'position':6 }, { 'id':5, 'position':7 }, { 'id':6, 'position':8 }, { 'id':4, 'position':9 }];
 
     const expected = [{ 'id':7, 'position':1 }, { 'id':1, 'position':2 }, { 'id':3, 'position':3 }, { 'id':8, 'position':4 }, { 'id':9, 'isEmpty':true, 'position':6 }, { 'id':2, 'position':5 }, { 'id':5, 'position':7 }, { 'id':6, 'position':8 }, { 'id':4, 'position':9 }];

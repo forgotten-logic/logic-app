@@ -1,6 +1,5 @@
-// import { findById } from '../common/utils.js';
 import eightData from '../data/eight-data.js';
-
+import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -11,13 +10,14 @@ import {
     getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
-import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
+// user constants
 const USER = 'USER';
-
-localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
 const user = pullFromLocStorage(USER);
 
-// create a grid of nine squares on which the tiles will move
+// seed localStorage with tile data from eight-data.js
+localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
+
+// tile grid constants
 const tileMap = document.getElementById('tile-map');
 tileMap.classList.add('tile-map');
 
@@ -43,28 +43,25 @@ const spaces = [
     pos9
 ];
 
+// create a grid of nine squares on which the tiles will move
 export function generateThreeByThree() {
-
     const tiles = generateEightTiles();
-
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
-
         spaces[i].id = `pos-${i + 1}`;
-
         if (tiles[i]) spaces[i].append(tiles[i]);
         tileMap.append(spaces[i]);
     }
-
     return spaces;
 }
 
-// get 8 numbered tiles; returns an array of tiles
+// get 8 numbered tiles and 1 empty; returns an array of tiles
 export function generateEightTiles() {
     const oldTiles = document.querySelectorAll('.tile');
     for (let tile of oldTiles) {
         tile.remove();
     }
+
     const tile1 = document.createElement('div');
     const tile2 = document.createElement('div');
     const tile3 = document.createElement('div');

@@ -34,7 +34,7 @@ const movementMap = {
     1: [2, 4],
 };
 
-// tests passing
+// test passing
 export function checkIfMovable(selectedTile) {
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
 
