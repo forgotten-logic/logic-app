@@ -5,23 +5,35 @@ body {
 	--color3: hsla(174, 59%, 56%, 1); /*medium-turquoise*/
 	--color4: hsla(166, 16%, 26%, 1); /*dark-slate-gray*/
 	--color5: hsla(0, 0%, 0%, 1); /*black*/
+
+	background-color: white;
 }
 
-main {
-	position: relative;
+.logic-logo {
+    font-family: 'puzzleCryptoregular';
+    margin: 10px;
+    margin-left: 1em;
+    font-size: 40px;
+}
+
+.logic-logo:hover {
+    font-family: 'puzzleregular';
 }
 
 .tile-map {
-	margin: 5em;
+	margin: 2em;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
 	width: 400px;
 	height: 400px;
+	border: 15px inset var(--color3);
+	border-radius: 10px;
 }
 
 .space {
 	border: 1px solid var(--color5);
+	background-color: hsla(4, 79%, 59%, .7);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -29,17 +41,17 @@ main {
 }
 
 .tile {
-	background-color: ;
-	width: 80%;
-	height: 80%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 80%;
+	height: 80%;
+	background-color: hsla(166, 16%, 26%, .9);
 	border-radius: 10px;
-}
-
-p {
-	font-size: 25px;
+	color: var(--color3);
+	font-family: 'Shadows Into Light', cursive;
+	font-weight: bold;
+	font-size: 2rem;
 }
 
 #win-or-lose {
@@ -61,12 +73,22 @@ p {
 	text-align: center;
 }
 
-#puzzleInfo {
+#puzzle-info {
 	display: flex;
 	flex-direction: column;
-	width: 80%;
+	width: 60%;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+p {
+	font-family: sans-serif;
 }
 
 .button {
 	padding: 10rem;
+	border-radius: 10px;
+	font-family: 'Shadows Into Light', cursive;
 }
+
