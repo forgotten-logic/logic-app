@@ -3,19 +3,18 @@ import { setInLocStorage, pullFromLocStorage } from '../common/utils.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
-    updateMovesCounter,
-    setUserMoves,
+    updateAndSetUserMoves,
     checkWinCondition,
-    renderNewResults,
+    renderResults,
     getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
-// user constants
-const USER = 'USER';
-const user = pullFromLocStorage(USER);
+import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
+// const USER = 'USER';
+// const user = pullFromLocStorage(USER);
+const EIGHTDATA = 'EIGHTDATA';
 
-// seed localStorage with tile data from eight-data.js
-localStorage.setItem('EIGHTDATA', JSON.stringify(eightData));
+setInLocStorage(EIGHTDATA, eightData);
 
 // tile grid constants
 const tileMap = document.getElementById('tile-map');
@@ -86,8 +85,7 @@ export function generateEightTiles() {
         tile9
     ];
 
-    // pull down tile data from localStorage
-    const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     
     // loop through tiles and add properties and functionality
     for (let i = 0; i < localStorageEightData.length; i++) {
@@ -100,31 +98,27 @@ export function generateEightTiles() {
             
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
-
                 const selectedTile = tileData.id;
                 if (checkIfMovable(selectedTile) === true) {
-                    // if the clicked on tile is movable, update the board and user stats
-                    updateMovesCounter();
-                    setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
                     let solved = checkWinCondition(newTiles);
-                    
-                    setInLocStorage(user);
-                    const stringyTiles = JSON.stringify(newTiles);
-                    localStorage.setItem('EIGHTDATA', stringyTiles);
+                    updateAndSetUserMoves();
+                    setInLocStorage(EIGHTDATA, newTiles);
                     generateThreeByThree();
+                    
                     if (solved === true) {
-                        user.gamesWon++;
-                        setInLocStorage(user);  
-                        renderNewResults();
+                        renderResults();
                     }
                 }
             });
         }
-
     }
     return tiles;
 }
+
+// export function generatePuzzleInfo() {
+
+// }
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
@@ -132,7 +126,7 @@ export function placeTilesRandomly() {
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-    
+
     // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
@@ -140,10 +134,10 @@ export function placeTilesRandomly() {
         tileObject.position = i + 1;
         placedTiles.push(tileObject);
     }
-
+    
     // set shuffled tile positions in local storage
     localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
 
     // generate the grid with the updated position data
     generateThreeByThree();
-}
+} 

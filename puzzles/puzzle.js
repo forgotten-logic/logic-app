@@ -1,5 +1,5 @@
 import { generateThreeByThree, placeTilesRandomly } from './puzzle-render-utils.js';
-import { renderResultsDisplay, clearUserMoves } from './puzzle-utils.js';
+import { clearUserMoves } from './puzzle-utils.js';
 
 
 const resultsDisplay = document.getElementById('results-display');
@@ -15,4 +15,3 @@ startButton.addEventListener('click', () => {
 });
 
 generateThreeByThree();
-renderResultsDisplay();
