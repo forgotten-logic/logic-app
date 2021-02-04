@@ -9,7 +9,6 @@ import {
     getArrayOfRandomNumbers
 } from '../puzzles/puzzle-utils.js';
 
-import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
 // const USER = 'USER';
 // const user = pullFromLocStorage(USER);
 const EIGHTDATA = 'EIGHTDATA';

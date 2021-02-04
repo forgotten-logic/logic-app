@@ -1,6 +1,5 @@
-import { getArrayOfRandomNumbers } from '../puzzles/puzzle-render-utils.js';
 import eightData from '../data/eight-data.js';
-import { checkIfMovable, updateMovesCounter, checkWinCondition, moveTilesOnClick } from '../puzzles/puzzle-utils.js';
+import { checkIfMovable, checkWinCondition, moveTilesOnClick, getArrayOfRandomNumbers } from '../puzzles/puzzle-utils.js';
 
 const test = QUnit.test;
 
@@ -36,17 +35,6 @@ test('It should return an array of random numbers equal to the length of the giv
     expect.equal(actual2, expected2);
     expect.equal(actual3, expected3);
 });
-
-// test updateMovesCounter
-// test('It should increment movesCount by 1', (expect) => {
-//     let movesCount = 0;
-//     updateMovesCounter();
-//     const expected = 1;
-//     const actual = movesCount;
-
-//     expect.equal(actual, expected);
-// });
-// FAILING: this function is not testable without refactoring(same with: setUserMoves, clearUserMoves, winOrLose)
 
 // test checkWinCondition
 test('It should return false when provided a set of tiles whose id property and position property are not the same number; it should return true if those properties do match for all tiles', (expect) => {
