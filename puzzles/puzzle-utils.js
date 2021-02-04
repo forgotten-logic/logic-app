@@ -23,6 +23,7 @@ function isSolvable(anArray) {
     return evenInverions;
 }
 
+// test passing
 export function getArrayOfRandomNumbers(array) {
     let placementArray = [];
 
@@ -69,6 +70,7 @@ const movementMap = {
     1: [2, 4],
 };
 
+// test passing
 export function checkIfMovable(selectedTile) {
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
@@ -84,6 +86,7 @@ export function checkIfMovable(selectedTile) {
     }
 }
 
+// test passing
 export function moveTilesOnClick(selectedTile) {
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
 
@@ -102,13 +105,12 @@ export function moveTilesOnClick(selectedTile) {
     return localStorageEightData;
 }
 
+// tests passing
 export function checkWinCondition(newTiles) {
 
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);
-        // console.log(tile.position);
-        // console.log(tile.id);
         if (tile.position !== tile.id) {
             condition = false;
             return false;
@@ -133,7 +135,7 @@ export function clearUserMoves() {
     setInLocStorage(USER, user);
 }
 
-function winOrLose() {
+export function winOrLose() {
     if (user.gamesWon >= 1) {
         return true;
     }
