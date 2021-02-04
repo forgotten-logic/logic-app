@@ -5,20 +5,12 @@ const USER = 'USER';
 const EIGHTDATA = 'EIGHTDATA';
 let user = pullFromLocStorage(USER);
 
-// GENERATED RESULTS DOM ELEMENTS //
 let solvedCount = 0;
 let movesCount = 0;
 const resultsContainer = document.getElementById('results-display');
 const winLoseMessageEl = document.createElement('p');
-winLoseMessageEl.id = 'win-or-lose';
 const solvedEl = document.createElement('p');
-solvedEl.id = 'user-solved';
-solvedEl.textContent = 'Solved: ' + solvedCount;
-
 const movesEl = document.createElement('p');
-movesEl.id = 'user-moves';
-movesEl.classList.add('animate__animated', 'animate__bounce');
-movesEl.textContent = 'Moves: ' + movesCount;
 
 const movementMap = {
     9: [6, 8],
@@ -44,7 +36,7 @@ moveTilesOnClick(selectedTile); // uses EIGHTDATA
 updateAndSetUserMoves(); // uses movesCount, movesEl, USER, user
 clearUserMoves(); // uses movesCount, movesEl, USER, user
 winOrLose(); // uses user
-renderResults(); // uses solvedCount, user, solvedEl, USER, winLoseMessageEl, resultsContainer
+renderResults(); // uses solvedCount, movesCount, user, solvedEl, USER, winLoseMessageEl, resultsContainer
 	// nested function:
 resultMessage(winState); // uses winLoseMessageEl, user, movesCount
 
@@ -115,5 +107,15 @@ findById(someArray, id);
 // Use variables in global scope:
 createUser(formData) // uses USER
 
+/////////////////////////////////////
+
+/* Variables in page-called js files */
+
+// puzzle.js
+const resultsDisplay = document.getElementById('results-display');
+const startButton = document.createElement('button');
+
+// app.js
+const form = document.getElementById('newUser');
 
 
