@@ -10,6 +10,18 @@ const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 
+export function getArrayOfRandomNumbers(array) {
+    let placementArray = [];
+
+    while (placementArray.length < array.length) {
+        let randomNumber = Math.ceil(Math.random() * (array.length));
+        if (!placementArray.some(n => n === randomNumber)) {
+            placementArray.push(randomNumber);
+        }
+    }
+    return placementArray;
+}
+
 // GENERATED RESULTS DOM ELEMENTS //
 let solvedCount = 0;
 let movesCount = 0;
@@ -91,6 +103,13 @@ export function updateAndSetUserMoves() {
     movesCount++;
     movesEl.textContent = 'Moves: ' + movesCount;
     user.moves++;
+    setInLocStorage(USER, user);
+}
+
+export function clearUserMoves() {
+    movesCount = 0;
+    movesEl.textContent = 'Moves: ' + movesCount;
+    user.moves = 0;
     setInLocStorage(USER, user);
 }
 
