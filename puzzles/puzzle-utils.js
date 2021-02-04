@@ -80,7 +80,9 @@ const movementMap = {
 };
 
 // test passing
-export function checkIfMovable(selectedTile) {
+export function checkIfMovable(selectedTile, startStatus) {
+    if (!startStatus) return false;
+    
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     let tile = findById(localStorageEightData, selectedTile);
 

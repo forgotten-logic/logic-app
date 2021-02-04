@@ -9,14 +9,13 @@ body {
 	background-color: white;
 }
 
-.logic-logo {
-    font-family: 'puzzleCryptoregular';
-    margin: 10px;
+.puzzle-header {
     margin-left: 1em;
     font-size: 40px;
+    font-family: 'puzzleCryptoregular';
 }
 
-.logic-logo:hover {
+.puzzle-header:hover {
     font-family: 'puzzleregular';
 }
 
@@ -77,18 +76,42 @@ body {
 	display: flex;
 	flex-direction: column;
 	width: 60%;
-	font-family: 'Shadows Into Light', cursive;
 	font-size: 1.5rem;
+	font-family: monospace;
 	text-align: center;
 }
 
-p {
-	font-family: sans-serif;
+h2, p {
+	margin: 0;
 }
 
-.button {
-	padding: 10rem;
+#puzzle-name {
+	font-size: 55px;
+	font-family: 'puzzleregular';
+}
+
+.start {
+	background-color: var(--color3);
+	padding: 5px;
 	border-radius: 10px;
-	font-family: 'Shadows Into Light', cursive;
+	font-family: monospace;
+}
+
+@font-face {
+    font-family: 'puzzleregular';
+    src: url('../assets/fonts/puzzlefade-webfont.woff2') format('woff2'),
+		 url('../assets/fonts/puzzlefade-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'puzzleCryptoregular';
+    src: url('../assets/fonts/puzzle_font-webfont.woff2') format('woff2'),
+         url('../assets/fonts/puzzle_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 

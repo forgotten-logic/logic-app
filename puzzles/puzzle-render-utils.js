@@ -7,7 +7,8 @@ import {
     updateAndSetUserMoves,
     checkWinCondition,
     renderResults,
-    getArrayOfRandomNumbers
+    getArrayOfRandomNumbers,
+    clearUserMoves
 } from '../puzzles/puzzle-utils.js';
 
 const EIGHTDATA = 'EIGHTDATA';
@@ -50,6 +51,16 @@ export function generateThreeByThree() {
         tileMap.append(spaces[i]);
     }
     return spaces;
+}
+
+// click handler for start/shuffle button
+const startButton = document.createElement('button');
+let clickedStart = false;
+export function startGame() {
+    clickedStart = true;
+    clearUserMoves();
+    placeTilesRandomly();
+    startButton.textContent = 'Shuffle tiles and start again?';
 }
 
 // get 8 numbered tiles and 1 empty; returns an array of tiles
@@ -97,7 +108,8 @@ export function generateEightTiles() {
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
                 const selectedTile = tileData.id;
-                if (checkIfMovable(selectedTile) === true) {
+                // add 'clickedStart' argument here
+                if (checkIfMovable(selectedTile, clickedStart) === true) {
                     const newTiles = moveTilesOnClick(selectedTile);
                     let solved = checkWinCondition(newTiles);
                     updateAndSetUserMoves();
@@ -131,7 +143,6 @@ export function generatePuzzleInfo() {
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
-
     const tileObjects = JSON.parse(localStorage.getItem(EIGHTDATA));
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
