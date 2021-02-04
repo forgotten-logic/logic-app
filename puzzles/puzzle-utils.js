@@ -2,11 +2,11 @@ import {
     findById,
     setInLocStorage,
     pullFromLocStorage,
+    EIGHTDATA,
+    USER,
     // clearLocStorage
 } from '../common/utils.js';
 
-const USER = 'USER';
-const EIGHTDATA = 'EIGHTDATA';
 
 let user = pullFromLocStorage(USER);
 

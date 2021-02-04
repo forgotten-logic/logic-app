@@ -1,4 +1,5 @@
 export const USER = 'USER';
+export const EIGHTDATA = 'EIGHTDATA';
 
 export function pullFromLocStorage(key) {
     return JSON.parse(localStorage.getItem(key));
