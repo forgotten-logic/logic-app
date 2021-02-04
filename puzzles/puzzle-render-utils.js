@@ -62,6 +62,7 @@ export function generateEightTiles() {
         tile.remove();
     }
 
+    // make the tile divs
     const tile1 = document.createElement('div');
     const tile2 = document.createElement('div');
     const tile3 = document.createElement('div');
@@ -72,6 +73,7 @@ export function generateEightTiles() {
     const tile8 = document.createElement('div');
     const tile9 = document.createElement('div');
 
+    // put tile divs in an array
     const tiles = [
         tile1,
         tile2,
@@ -84,7 +86,10 @@ export function generateEightTiles() {
         tile9
     ];
 
+    // pull down tile data from localStorage
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
+    
+    // loop through tiles and add properties and functionality
     for (let i = 0; i < localStorageEightData.length; i++) {
         const tileData = localStorageEightData.find(item => item.position === i + 1);
 
@@ -92,15 +97,18 @@ export function generateEightTiles() {
             tiles[i].classList.add('tile');
             tiles[i].id = tileData.id;
             tiles[i].textContent = tileData.id;
+            
+            // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
 
                 const selectedTile = tileData.id;
                 if (checkIfMovable(selectedTile) === true) {
+                    // if the clicked on tile is movable, update the board and user stats
                     updateMovesCounter();
                     setUserMoves();
                     const newTiles = moveTilesOnClick(selectedTile);
-
                     let solved = checkWinCondition(newTiles);
+                    
                     setInLocStorage(user);
                     const stringyTiles = JSON.stringify(newTiles);
                     localStorage.setItem('EIGHTDATA', stringyTiles);
