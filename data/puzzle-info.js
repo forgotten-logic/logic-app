@@ -3,7 +3,7 @@
 // Future games, add Rules property //
 
 export const wikiLink = document.createElement('a');
-wikiLink.title = '15 Puzzle';
+wikiLink.title = ' 15 Puzzle';
 
 export const eightPuzzle = {
     id: 1,

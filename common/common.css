@@ -24,6 +24,8 @@ main {
     justify-content: center;
 	align-items: center;
 	margin-bottom: 20px;
+	position: relative;
+	height: 100%;
 }
 
 #menu {
@@ -66,14 +68,6 @@ main {
 #menu li a:hover {
 	color: var(--color3);
 	background: var(--color4);
-}
-
-footer > a {
-	text-decoration: none;
-}
-
-footer > p {
-	margin: 0;
 }
 
 footer {
