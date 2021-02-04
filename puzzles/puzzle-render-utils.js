@@ -116,21 +116,21 @@ export function generatePuzzleInfo() {
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
-    const tileObjects = JSON.parse(localStorage.getItem(EIGHTDATA));
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
-    const placements = getArrayOfRandomNumbers(tileObjects);
+    const tileOrder = getArrayOfRandomNumbers(tileObjects);
     
     // make an array of tile objects with positions updated to reflect the random array
-    let placedTiles = [];
-    for (let i = 0; i < placements.length; i++) {
-        const tileObject = tileObjects.find(tile => tile.id === placements[i]);
+    let orderedTiles = [];
+    for (let i = 0; i < tileOrder.length; i++) {
+        const tileObject = tileObjects.find(tile => tile.id === tileOrder[i]);
         tileObject.position = i + 1;
-        placedTiles.push(tileObject);
+        orderedTiles.push(tileObject);
     }
 
     // set shuffled tile positions in local storage
-    localStorage.setItem(EIGHTDATA, JSON.stringify(placedTiles));
+    setInLocStorage(EIGHTDATA, orderedTiles);
 
     // generate the grid with the updated position data
     generateThreeByThree();

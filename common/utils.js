@@ -5,8 +5,8 @@ export function pullFromLocStorage(key) {
     return JSON.parse(localStorage.getItem(key));
 }
 
-export function setInLocStorage(magicKey, key2) {
-    localStorage.setItem(magicKey, JSON.stringify(key2));
+export function setInLocStorage(magicKey, data) {
+    localStorage.setItem(magicKey, JSON.stringify(data));
 }
 
 export function clearLocStorage() {
