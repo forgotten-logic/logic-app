@@ -1,5 +1,5 @@
 import eightData from '../data/eight-data.js';
-import { checkIfMovable, getArrayOfRandomNumbers, updateMovesCounter, checkWinCondition } from '../puzzles/puzzle-utils.js';
+import { checkIfMovable, getArrayOfRandomNumbers, updateMovesCounter, checkWinCondition, moveTilesOnClick } from '../puzzles/puzzle-utils.js';
 
 const test = QUnit.test;
 
@@ -66,12 +66,13 @@ test('It should return false when provided a set of tiles whose id property and 
 
 // test moveTilesOnClick
 test('It should return a mutated array', (expect) => {
-    
-    localStorage.setItem();
-    
-    
-    const expected = true;
-    const actual = true;
+    const tiles = [{ 'id':7, 'position':1 }, { 'id':1, 'position':2 }, { 'id':3, 'position':3 }, { 'id':8, 'position':4 }, { 'id':9, 'isEmpty':true, 'position':5 }, { 'id':2, 'position':6 }, { 'id':5, 'position':7 }, { 'id':6, 'position':8 }, { 'id':4, 'position':9 }];
 
-    expect.equal(actual, expected);
+    const expected = [{ 'id':7, 'position':1 }, { 'id':1, 'position':2 }, { 'id':3, 'position':3 }, { 'id':8, 'position':4 }, { 'id':9, 'isEmpty':true, 'position':6 }, { 'id':2, 'position':5 }, { 'id':5, 'position':7 }, { 'id':6, 'position':8 }, { 'id':4, 'position':9 }];
+    
+    localStorage.setItem('EIGHTDATA', JSON.stringify(tiles));
+    
+    const actual = moveTilesOnClick(2);
+
+    expect.deepEqual(actual, expected);
 });

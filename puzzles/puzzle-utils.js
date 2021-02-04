@@ -51,6 +51,7 @@ export function checkIfMovable(selectedTile) {
     }
 }
 
+// test passing
 export function moveTilesOnClick(selectedTile) {
     const localStorageEightData = JSON.parse(localStorage.getItem('EIGHTDATA'));
 
