@@ -10,8 +10,7 @@ import {
 } from '../puzzles/puzzle-utils.js';
 
 import { pullFromLocStorage, setInLocStorage } from '../common/utils.js';
-// const USER = 'USER';
-// const user = pullFromLocStorage(USER);
+
 const EIGHTDATA = 'EIGHTDATA';
 
 setInLocStorage(EIGHTDATA, eightData);
@@ -129,14 +128,14 @@ export function generatePuzzleInfo() {
 
     puzzleInfo.append(puzzleTitle, puzzleDescription);
 }
+
 export function placeTilesRandomly() {
 
     // get the array of tile objects from localStorage
     const tileObjects = JSON.parse(localStorage.getItem('EIGHTDATA'));
-
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const placements = getArrayOfRandomNumbers(tileObjects);
-
+    
     // make an array of tile objects with positions updated to reflect the random array
     let placedTiles = [];
     for (let i = 0; i < placements.length; i++) {
