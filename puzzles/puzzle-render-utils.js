@@ -1,4 +1,3 @@
-
 import { 
     setInLocStorage,
     pullFromLocStorage, 
@@ -18,10 +17,10 @@ import {
 const spaces = makeArrayOfDivs(9);
 
 // create a grid of nine squares on which the tiles will move
-export function generateThreeByThree() {
+export function generateTileMap() {
     const tileMap = document.getElementById('tile-map');
     tileMap.classList.add('tile-map');
-    const tiles = generateEightTiles();
+    const tiles = generatePlayableTiles();
     
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
@@ -67,7 +66,7 @@ function moveTileAndUpdate(tileData) {
         let solved = checkWinCondition(newTiles);
         updateAndSetUserMoves();
         setInLocStorage(EIGHTDATA, newTiles);
-        generateThreeByThree();
+        generateTileMap();
 		
         if (solved === true) {
             renderResults();
@@ -75,15 +74,15 @@ function moveTileAndUpdate(tileData) {
     }
 }
 
-export function generateEightTiles() {
+export function generatePlayableTiles() {
     removeOldTiles();
     const tiles = makeArrayOfDivs(9);
-    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
     
     // loop through tiles and add properties and functionality
-    for (let i = 0; i < localStorageEightData.length; i++) {
+    for (let i = 0; i < tileObjects.length; i++) {
         
-        const tileData = localStorageEightData.find(item => item.position === i + 1);
+        const tileData = tileObjects.find(item => item.position === i + 1);
 
         if (!tileData.isEmpty) {
             tiles[i].classList.add('tile');
@@ -133,5 +132,5 @@ export function placeTilesRandomly() {
     setInLocStorage(EIGHTDATA, orderedTiles);
 
     // generate the grid with the updated position data
-    generateThreeByThree();
+    generateTileMap();
 } 

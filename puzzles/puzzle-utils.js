@@ -3,8 +3,7 @@ import {
     setInLocStorage,
     pullFromLocStorage,
     EIGHTDATA,
-    USER,
-    // clearLocStorage
+    USER
 } from '../common/utils.js';
 
 
