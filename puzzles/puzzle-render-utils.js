@@ -15,11 +15,8 @@ import {
     clearUserMoves
 } from '../puzzles/puzzle-utils.js';
 
-// tile grid constants
-
-
-
 const spaces = makeArrayOfDivs(9);
+
 // create a grid of nine squares on which the tiles will move
 export function generateThreeByThree() {
     const tileMap = document.getElementById('tile-map');
@@ -36,7 +33,6 @@ export function generateThreeByThree() {
 }
 
 // click handler for start/shuffle button
-
 let clickedStart = false;
 export function startGame() {
     const startButton = document.querySelector('.start');
@@ -55,18 +51,38 @@ function makeArrayOfDivs(quantity) {
 }
 
 // get 8 numbered tiles and 1 empty; returns an array of tiles
-export function generateEightTiles() {
+
+function removeOldTiles() {
     const oldTiles = document.querySelectorAll('.tile');
     for (let tile of oldTiles) {
         tile.remove();
     }
+}
 
+function moveTileAndUpdate(tileData) {
+    const selectedTile = tileData.id;
+	// maybe add 'clickedStart' argument here
+    if (checkIfMovable(selectedTile, clickedStart) === true) {
+        const newTiles = moveTilesOnClick(selectedTile);
+        let solved = checkWinCondition(newTiles);
+        updateAndSetUserMoves();
+        setInLocStorage(EIGHTDATA, newTiles);
+        generateThreeByThree();
+		
+        if (solved === true) {
+            renderResults();
+        }
+    }
+}
+
+export function generateEightTiles() {
+    removeOldTiles();
     const tiles = makeArrayOfDivs(9);
-
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
     
     // loop through tiles and add properties and functionality
     for (let i = 0; i < localStorageEightData.length; i++) {
+        
         const tileData = localStorageEightData.find(item => item.position === i + 1);
 
         if (!tileData.isEmpty) {
@@ -76,19 +92,7 @@ export function generateEightTiles() {
             
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
-                const selectedTile = tileData.id;
-                // add 'clickedStart' argument here
-                if (checkIfMovable(selectedTile, clickedStart) === true) {
-                    const newTiles = moveTilesOnClick(selectedTile);
-                    let solved = checkWinCondition(newTiles);
-                    updateAndSetUserMoves();
-                    setInLocStorage(EIGHTDATA, newTiles);
-                    generateThreeByThree();
-                    
-                    if (solved === true) {
-                        renderResults();
-                    }
-                }
+                moveTileAndUpdate(tileData);
             });
         }
     }
