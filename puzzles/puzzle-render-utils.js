@@ -1,5 +1,5 @@
 import eightData from '../data/eight-data.js';
-
+import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -115,7 +115,18 @@ export function generateEightTiles() {
 }
 
 export function generatePuzzleInfo() {
-    
+    let puzzleInfo = document.getElementById('puzzle-info');
+    let puzzleTitle = document.createElement('h2');
+    let puzzleDescription = document.createElement('p');
+
+    puzzleTitle.id = 'puzzle-name';
+    puzzleTitle.textContent = eightPuzzle.name;
+
+    puzzleDescription.id = 'description';
+    puzzleDescription.innerHTML = eightPuzzle.description;
+    puzzleDescription.append(wikiLink);
+
+    puzzleInfo.append(puzzleTitle, puzzleDescription);
 }
 
 export function placeTilesRandomly() {
@@ -132,9 +143,9 @@ export function placeTilesRandomly() {
         tileObject.position = i + 1;
         placedTiles.push(tileObject);
     }
-        // set shuffled tile positions in local storage
+    // set shuffled tile positions in local storage
     localStorage.setItem('EIGHTDATA', JSON.stringify(placedTiles));
 
-            // generate the grid with the updated position data
+    // generate the grid with the updated position data
     generateThreeByThree();
 } 
