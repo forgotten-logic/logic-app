@@ -95,7 +95,7 @@ placeTilesRandomly(); // uses EIGHTDATA
 /* From utils.js */
 
 // Variables:
-const USER = 'USER'; // exported
+
 
 // Do not use variables in global scope
 pullFromLocStorage(key);
