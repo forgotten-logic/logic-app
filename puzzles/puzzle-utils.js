@@ -53,14 +53,7 @@ export function getArrayOfRandomNumbers(array) {
 }
 
 // GENERATED RESULTS DOM ELEMENTS //
-let solvedCount = 0;
 let movesCount = 0;
-const resultsContainer = document.getElementById('results-display');
-const winLoseMessageEl = document.createElement('p');
-winLoseMessageEl.id = 'win-or-lose';
-const solvedEl = document.createElement('p');
-solvedEl.id = 'user-solved';
-solvedEl.textContent = 'Solved: ' + solvedCount;
 
 const movesEl = document.createElement('p');
 movesEl.id = 'user-moves';
@@ -133,36 +126,49 @@ export function winOrLose() {
     if (user.gamesWon >= 1) {
         return true;
     }
-    else false; // currently not linked to any action/result - need to update to trigger //
+    else false; // currently not linked to any action/result - need to update to trigger; to be used with future 'give up' button feature //
 }
 
 export function renderResults() {
+    let solvedCount = 0;
+    
+    const resultsContainer = document.getElementById('results-display');
+    
+    const solvedEl = document.createElement('p');
+    solvedEl.id = 'user-solved';
+    solvedEl.textContent = 'Solved: ' + solvedCount;
+    
     solvedCount++;
     user.gamesWon++;
+    
     solvedEl.textContent = 'Solved: ' + solvedCount;
 
     setInLocStorage(USER, user);
 
     let winState = winOrLose();
+    
+    resultMessage(winState, resultsContainer);
 
-    // DISPLAY OF WINLOSE MESSAGE //
+    resultsContainer.append(movesEl, solvedEl);
+}
+
+function resultMessage(winState, resultsContainer) {
+    const winLoseMessageEl = document.createElement('p');
+    winLoseMessageEl.id = 'win-or-lose';
     winLoseMessageEl.style.display = 'flex';
     winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
     winLoseMessageEl.addEventListener('animationend', () => {
         winLoseMessageEl.classList.remove('animate__zoomInUp');
         winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
     });
-    resultMessage(winState);
 
-    resultsContainer.append(movesEl, solvedEl, winLoseMessageEl);
-
-    function resultMessage(winState) {
-        if (winState === true) {
-            winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
-        }
-        else {
-            winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
-        }
-        return winLoseMessageEl;
+    if (winState === true) {
+        winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
     }
+    else {
+        winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
+    }
+
+    resultsContainer.append(winLoseMessageEl);
+    return winLoseMessageEl;
 }

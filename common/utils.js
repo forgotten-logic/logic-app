@@ -9,10 +9,6 @@ export function setInLocStorage(magicKey, data) {
     localStorage.setItem(magicKey, JSON.stringify(data));
 }
 
-export function clearLocStorage() {
-    localStorage.clear();
-}
-
 export function createUser(formData) {
     let user = pullFromLocStorage(USER);
     if (!formData.get('name') || !formData.get('avatar')) {
