@@ -30,6 +30,8 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
@@ -37,10 +39,11 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     border: 1px solid rgba(56, 77, 72, 1);
     border-radius: 0 60px 60px 60px;
-    height: 750px;
-    width: 50%;
+    height: fit-content;
+    width: 65%;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.9);
 }
@@ -50,33 +53,39 @@ img {
     max-width: 100px;
     width: 30%;
     height: 80%;
+    border-radius: 9px;
 }
 
+.avatars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1em;
+
+}
 
 .home-p {
     font-family: 'puzzleregular';
-    font-size: 50px;
+    font-size: 2.5em;
     --animate-duration: 4s;
+    margin: .5em;
 }
-
 
 input[type="radio"] {
     display: none;
     margin: 1em;
 }
 
-
-
 input[type="radio"]:checked + img {
     -webkit-animation: rotate-center 0.6s ease-in-out both;
 	        animation: rotate-center 0.6s ease-in-out both;
 }
 
-
 .user-input {
     padding: 4px;
     margin: 1em;
-    font-size: 15px;
+    font-size: 1em;
     border-width: 4px;
     border-color: #4FD1C5;
     background-color: #ffffff;
@@ -99,12 +108,11 @@ input[type="radio"]:checked + img {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-left: 30px;
+    margin: 1em;
 }
 
 .image {
     opacity: 1;
-    display: block;
     width: 100%;
     height: auto;
     transition: .5s ease;
@@ -134,13 +142,14 @@ input[type="radio"]:checked + img {
     background-color: hsla(174, 59%, 56%, 1);
     color: white;
     font-size: 16px;
-    padding: 16px 32px;
+    font-family: monospace;
+    padding: 16px;
+    border-radius: 9px;
 }
 
 
 .button-box {
-    display: block;
-    margin-top: 50px;
+
 }
 
 .button {
@@ -161,8 +170,7 @@ input[type="radio"]:checked + img {
     outline: none;
     position: relative;
     padding: 10px;
-    margin-left: 5em;
-    margin-bottom: 10px;
+    margin: 1em;
 }
   
 button::before {
@@ -200,7 +208,6 @@ button:hover::after, button:focus::after {
          url('./assets/fonts/puzzlefade-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -209,7 +216,6 @@ button:hover::after, button:focus::after {
          url('./assets/fonts/puzzle_font-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @-webkit-keyframes rotate-center {
