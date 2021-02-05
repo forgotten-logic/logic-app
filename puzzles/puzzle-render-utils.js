@@ -1,6 +1,6 @@
-import { 
+import {
     setInLocStorage,
-    pullFromLocStorage, 
+    pullFromLocStorage,
     EIGHTDATA
 } from '../common/utils.js';
 import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
@@ -9,9 +9,9 @@ import {
     checkIfMovable,
     updateAndSetUserMoves,
     checkWinCondition,
-    renderResults,
+    resultMessage,
     getArrayOfRandomNumbers,
-    clearUserMoves
+    clearUserMoves,
 } from '../puzzles/puzzle-utils.js';
 
 const spaces = makeArrayOfDivs(9);
@@ -21,7 +21,7 @@ export function generateTileMap() {
     const tileMap = document.getElementById('tile-map');
     tileMap.classList.add('tile-map');
     const tiles = generatePlayableTiles();
-    
+
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
@@ -60,16 +60,15 @@ function removeOldTiles() {
 
 function moveTileAndUpdate(tileData) {
     const selectedTile = tileData.id;
-	// maybe add 'clickedStart' argument here
+    // maybe add 'clickedStart' argument here
     if (checkIfMovable(selectedTile, clickedStart) === true) {
         const newTiles = moveTilesOnClick(selectedTile);
         let solved = checkWinCondition(newTiles);
         updateAndSetUserMoves();
         setInLocStorage(EIGHTDATA, newTiles);
         generateTileMap();
-		
         if (solved === true) {
-            renderResults();
+            resultMessage(newTiles);
         }
     }
 }
@@ -78,17 +77,17 @@ export function generatePlayableTiles() {
     removeOldTiles();
     const tiles = makeArrayOfDivs(9);
     const tileObjects = pullFromLocStorage(EIGHTDATA);
-    
+
     // loop through tiles and add properties and functionality
     for (let i = 0; i < tileObjects.length; i++) {
-        
+
         const tileData = tileObjects.find(item => item.position === i + 1);
 
         if (!tileData.isEmpty) {
             tiles[i].classList.add('tile');
             tiles[i].id = tileData.id;
             tiles[i].textContent = tileData.id;
-            
+
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
                 moveTileAndUpdate(tileData);
@@ -119,7 +118,7 @@ export function placeTilesRandomly() {
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
     const tileOrder = getArrayOfRandomNumbers(tileObjects);
-    
+
     // make an array of tile objects with positions updated to reflect the random array
     let orderedTiles = [];
     for (let i = 0; i < tileOrder.length; i++) {
@@ -133,4 +132,4 @@ export function placeTilesRandomly() {
 
     // generate the grid with the updated position data
     generateTileMap();
-} 
+}

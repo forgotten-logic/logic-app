@@ -1,6 +1,8 @@
 import { generateTileMap, generatePuzzleInfo, startGame } from './puzzle-render-utils.js';
 import eightData from '../data/eight-data.js';
-import { setInLocStorage, EIGHTDATA } from '../common/utils.js';
+import { setInLocStorage, EIGHTDATA, loadUserProfile } from '../common/utils.js';
+
+loadUserProfile();
 
 const resultsDisplay = document.getElementById('results-display');
 const startButton = document.createElement('button');

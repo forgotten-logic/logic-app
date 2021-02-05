@@ -23,7 +23,7 @@ function removeRandomEmpty(anArray) {
 function isSolvable(anArray) {
     let inversions = 0;
     let mutatedCopy = removeRandomEmpty(anArray);
-    for (let i = 0; i < mutatedCopy.length; i++){
+    for (let i = 0; i < mutatedCopy.length; i++) {
         for (let j = i + 1; j < mutatedCopy.length; j++) {
             if ((mutatedCopy[i] && mutatedCopy[j]), mutatedCopy[i] > mutatedCopy[j]) {
                 inversions++;
@@ -44,7 +44,7 @@ export function getArrayOfRandomNumbers(array) {
         }
     }
     let testy = isSolvable(randomOrderArray);
-    if (Number.isInteger(testy) === true){
+    if (Number.isInteger(testy) === true) {
         return randomOrderArray;
     } else {
         return getArrayOfRandomNumbers(array);
@@ -63,7 +63,7 @@ movesEl.textContent = 'Moves: ' + movesCount;
 // test passing
 export function checkIfMovable(selectedTile, startStatus) {
     if (!startStatus) return false;
-    
+
     const tileObjects = pullFromLocStorage(EIGHTDATA);
     let tile = findById(tileObjects, selectedTile);
 
@@ -122,39 +122,21 @@ export function clearUserMoves() {
     setInLocStorage(USER, user);
 }
 
-export function winOrLose() {
-    if (user.gamesWon >= 1) {
+export function winOrLose(newTiles) {
+    if (checkWinCondition(newTiles) === true) {
         return true;
     }
     else false; // currently not linked to any action/result - need to update to trigger; to be used with future 'give up' button feature //
 }
 
-export function renderResults() {
-    let solvedCount = 0;
-    
+export function resultMessage(newTiles) {
     const resultsContainer = document.getElementById('results-display');
-    
-    const solvedEl = document.createElement('p');
-    solvedEl.id = 'user-solved';
-    solvedEl.textContent = 'Solved: ' + solvedCount;
-    
-    solvedCount++;
-    user.gamesWon++;
-    
-    solvedEl.textContent = 'Solved: ' + solvedCount;
 
-    setInLocStorage(USER, user);
+    let winState = checkWinCondition(newTiles);
 
-    let winState = winOrLose();
-    
-    resultMessage(winState, resultsContainer);
-
-    resultsContainer.append(movesEl, solvedEl);
-}
-
-function resultMessage(winState, resultsContainer) {
     const winLoseMessageEl = document.createElement('p');
     winLoseMessageEl.id = 'win-or-lose';
+    // ANIMATION FOR WIN/LOSE MESSAGE //
     winLoseMessageEl.style.display = 'flex';
     winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
     winLoseMessageEl.addEventListener('animationend', () => {
@@ -163,11 +145,14 @@ function resultMessage(winState, resultsContainer) {
     });
 
     if (winState === true) {
+        user.gamesWon++;
         winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
     }
     else {
         winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
     }
+
+    setInLocStorage(USER, user);
 
     resultsContainer.append(winLoseMessageEl);
     return winLoseMessageEl;
