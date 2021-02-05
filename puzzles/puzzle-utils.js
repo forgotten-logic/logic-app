@@ -170,9 +170,6 @@ export function resultMessage(newTiles) {
 
     resultsContainer.append(winLoseMessageEl);
     return winLoseMessageEl;
-<<<<<<< HEAD
-}
-=======
 }
 
 export function loadUserProfile() {
