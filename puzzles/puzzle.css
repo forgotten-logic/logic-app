@@ -10,12 +10,11 @@ body {
 }
 
 main {
-	/* position: relative;
-	height: 100vh; */
 	height: 100vh;
 	display: grid;
 	grid-template-rows: min-content min-content 1fr;
 	grid-template-columns: 65% 35%;
+
 }
 
 .puzzle-header {
@@ -29,9 +28,6 @@ main {
 }
 
 .user-profile {
-	/* position: absolute;
-    bottom: 37%;
-    right: 20%; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,27 +56,30 @@ img {
 }
 
 #puzzle-info {
-	/* position: absolute;
-    top: 5%;
-    left: 20%; */
     display: flex;
     flex-direction: column;
     margin: auto;
     font-family: monospace;
     text-align: center;
+  width: 60%;
+	font-size: 1.25rem;
 	grid-row: 1;
 	grid-column: 1 / 3;
+}
+
+h2, p {
+	font-family: monospace;
+	margin: 1rem;
 }
 
 #puzzle-name {
 	font-size: 55px;
 	font-family: 'puzzleregular';
+	margin-top: 1rem;
+	margin-bottom: .5rem;
 }
 
 .start {
-	/* position: absolute;
-    top: 19%;
-    left: 44%; */
     background-color: var(--color3);
     padding: 5px;
     border-radius: 10px;
@@ -92,9 +91,6 @@ img {
 }
 
 .tile-map {
-	/* position: absolute;
-	top: 20%;
-	left: 35%; */
 	margin: auto;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
@@ -134,9 +130,6 @@ img {
 	display: none;
 	justify-content: center;
 	align-items: center;
-	/* position: absolute;
-	top: 25%;
-	left: 40%; */
 	width: 20%;
 	height: fit-content;
 	padding: 5px;
@@ -148,27 +141,6 @@ img {
 	font-size: 1.3rem;
 	font-family: monospace;
 	text-align: center;
-}
-
-#puzzle-info {
-	display: flex;
-	flex-direction: column;
-	width: 60%;
-	font-size: 1.25rem;
-	font-family: monospace;
-	text-align: center;
-}
-
-h2, p {
-	font-family: monospace;
-	margin: 1rem;
-}
-
-#puzzle-name {
-	font-size: 55px;
-	font-family: 'puzzleregular';
-	margin-top: 1rem;
-	margin-bottom: .5rem;
 }
 
 @font-face {
