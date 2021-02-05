@@ -57,6 +57,7 @@ export function getArrayOfRandomNumbers(array) {
 // GENERATED RESULTS DOM ELEMENTS //
 export let movesCount = 0;
 export let solvedCount = 0;
+const moves = document.getElementById('user-moves');
 
 // test passing
 export function checkIfMovable(selectedTile, startStatus) {
@@ -118,7 +119,6 @@ export function setUserSolves() {
 
 export function updateUserProfileMoves() {
     movesCount++;
-    const moves = document.getElementById('user-moves');
 
     moves.textContent = movesCount;
 }
