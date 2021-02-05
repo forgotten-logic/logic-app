@@ -37,7 +37,7 @@ section {
     align-items: center;
     border: 1px solid rgba(56, 77, 72, 1);
     border-radius: 0 60px 60px 60px;
-    height: 750px;
+    height: fit-content;
     width: 50%;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -50,6 +50,10 @@ img {
     height: 80%;
 }
 
+.avatars {
+    display: flex;
+    margin: 1em;
+}
 
 .home-p {
     font-family: 'puzzleregular';
