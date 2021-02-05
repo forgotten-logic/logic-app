@@ -75,5 +75,10 @@ const avatars = [
         id: 'albert-einstein',
         name: 'Albert Einstein',
         avatar: '../assets/avatars/Albert-Einstein.jpg',
+    },
+    {
+        id: 'anonymous',
+        name: 'Anonymous',
+        avatar: '../assets/avatars/'
     }
 ];
