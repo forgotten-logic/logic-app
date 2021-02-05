@@ -8,11 +8,12 @@ import eightData from '../data/eight-data.js';
 import { setInLocStorage, EIGHTDATA } from '../common/utils.js';
 
 loadUserProfile();
-
-const resultsDisplay = document.getElementById('results-display');
+const main = document.querySelector('main');
+const tileMap = document.getElementById('tile-map');
 const startButton = document.createElement('button');
 startButton.classList.add('start');
-resultsDisplay.parentNode.insertBefore(startButton, resultsDisplay);
+
+main.insertBefore(startButton, tileMap);
 startButton.textContent = 'Shuffle tiles and start?';
 
 startButton.addEventListener('click', startGame);
