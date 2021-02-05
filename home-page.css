@@ -148,10 +148,6 @@ input[type="radio"]:checked + img {
 }
 
 
-.button-box {
-
-}
-
 .button {
     min-width: 100px;
     min-height: 20px;
