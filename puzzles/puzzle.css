@@ -7,19 +7,6 @@ body {
 	--color5: hsla(0, 0%, 0%, 1); /*black*/
 
 	background-color: white;
-
-	/* display: grid;
-	grid-template-columns: 1fr 3fr 1fr;
-	grid-template-rows: auto;
-	gap: 0px 0px;
-	grid-template-areas:
-	  "info info info"
-	  "startBtn puzzle userProfile"
-	  "results results results";
-	align-items: center;
-	justify-content: center;
-	width: 80%;
-	height: 80%; */
 }
 
 main {
@@ -35,12 +22,6 @@ main {
 .puzzle-header:hover {
     font-family: 'puzzleregular';
 }
-
-/* .info {
-	grid-area: info;
-	grid-column: 1 / span 3;
-	grid-row: 1 / 2;
-} */
 
 .user-profile {
 	position: absolute;

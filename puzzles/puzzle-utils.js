@@ -122,7 +122,7 @@ export function clearUserMoves() {
     setInLocStorage(USER, user);
 }
 
-export function winOrLose() {
+export function winOrLose(newTiles) {
     if (checkWinCondition(newTiles) === true) {
         return true;
     }

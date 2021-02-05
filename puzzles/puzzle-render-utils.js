@@ -12,7 +12,6 @@ import {
     resultMessage,
     getArrayOfRandomNumbers,
     clearUserMoves,
-    winOrLose
 } from '../puzzles/puzzle-utils.js';
 
 const spaces = makeArrayOfDivs(9);
