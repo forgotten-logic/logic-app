@@ -134,7 +134,7 @@ export function updateUserProfileSolves() {
 
 export function clearUserMoves() {
     movesCount = 0;
-    moves.textContent = 'Moves: ' + movesCount;
+    moves.textContent = movesCount;
     user.moves = 0;
     setInLocStorage(USER, user);
 }
