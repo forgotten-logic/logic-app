@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../common/common.css">
+    <link rel="stylesheet" href="./puzzle.css">
+    <title>Puzzles</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="puzzle-header">
+            Puzzles
+        </h1>
+        <nav id='menu'>
+            <ul>
+                <li><a href='../index.html'>Home</a></li>
+                <li><a href='./'>Puzzles</a></li>
+                <li><a href='../about-devs/index.html'>About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="puzzle-info" class="info">
+            <!-- inject puzzle info here -->
+        </section>
+        <section id="tile-map" class="puzzle">
+            <!-- inject tile map here -->
+        </section>
+        <section class="user-profile">
+            <img id="avatar">
+            <div class="user-info">
+                <p><span id="user-name"></span></p>
+                <p>Moves: <span id="user-moves"></span></p>
+                <p>Solves: <span id="user-solves"></span></p>
+            </div>
+        </section>
+        <section id="results-display" class="results">
+            <!-- inject user results display here -->
+        </section>
+        </section>
+    </main>
+
+    <script type="module" src="puzzle.js"></script>
+</body>
+
+</html>

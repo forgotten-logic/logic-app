@@ -1,0 +1,140 @@
+body {
+    --color1: hsla(4, 79%, 59%, 1); /*fire-opal*/
+	--color2: hsla(35, 61%, 90%, 1); /*antique-white*/
+	--color3: hsla(174, 59%, 56%, 1); /*medium-turquoise*/
+	--color4: hsla(166, 16%, 26%, 1); /*dark-slate-gray*/
+	--color5: hsla(0, 0%, 0%, 1); /*black*/
+}
+
+main {
+    margin-bottom: 20px;
+}
+
+.about-header {
+    margin-left: 1em;
+    font-size: 40px;
+    font-family: 'puzzleCryptoregular';
+}
+
+.about-header:hover {
+    font-family: 'puzzleregular';
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
+
+h2 {
+    font-family: 'puzzleregular';
+    font-size: 55px;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 3rem;
+    padding: 5px;
+    width: 250px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 0 0 123px 123px;
+    box-shadow: 0 0 3pt 2pt rgba(0, 0, 0, 0.993);
+    position: relative;
+}
+
+p {
+    margin-top: 5em; 
+    font-family: 'Kalam', cursive;
+}
+
+.logos {
+    margin-left: 1.5em;
+    margin-top: 1em;
+    width: 40px;
+    height: auto;
+    padding: 5px;
+}
+
+#linkedin {
+    height: 50px;
+    width: 70px;
+    margin: 10px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+article.julianne .logo-container:last-child a:last-of-type {
+    text-decoration: none;
+    color: var(--color2);
+    border-radius: 5px;
+    background-color: var(--color1);
+    padding: 3px;
+    margin-bottom: 3em;
+    font-size: .8rem;
+    font-family: 'Kalam', monospace;
+}
+
+.portfolio {
+    position: absolute;
+    top: 250px;
+}
+
+.about-div {
+    border: 1px solid black;
+}
+
+.name-title{
+    color: antiquewhite;
+    font-family: 'Shadows Into Light', cursive;
+    position: absolute;
+    top: .5px;
+    left: 100px;
+}
+
+.anthony {
+    background-color: #2944dbaf;
+}
+
+.devon {
+    background-color: #1EA896;
+}
+
+.vance {
+    background-color: #FF715B;
+}
+
+.julianne {
+    background-color: #4C5454;
+}
+
+@font-face {
+    font-family: 'puzzleregular';
+    src: url('../assets/fonts/puzzlefade-webfont.woff2') format('woff2'),
+         url('../assets/fonts/puzzlefade-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'puzzleCryptoregular';
+    src: url('../assets/fonts/puzzle_font-webfont.woff2') format('woff2'),
+         url('../assets/fonts/puzzle_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
