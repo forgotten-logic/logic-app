@@ -1,6 +1,11 @@
 import { generateTileMap, generatePuzzleInfo, startGame } from './puzzle-render-utils.js';
+import {
+    // movesCount, 
+    // solvedCount, 
+    loadUserProfile
+} from './puzzle-utils.js';
 import eightData from '../data/eight-data.js';
-import { setInLocStorage, EIGHTDATA, loadUserProfile } from '../common/utils.js';
+import { setInLocStorage, EIGHTDATA } from '../common/utils.js';
 
 loadUserProfile();
 const main = document.querySelector('main');
