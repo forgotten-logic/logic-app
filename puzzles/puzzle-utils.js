@@ -6,25 +6,26 @@ import {
     USER
 } from '../common/utils.js';
 
+import { movementMap } from '../data/eight-data.js';
 
 let user = pullFromLocStorage(USER);
 
 function removeRandomEmpty(anArray) {
-    let arrayWithout = anArray.slice();
+    let mutatedCopy = anArray.slice();
 
-    let index = arrayWithout.indexOf(9);
+    let index = mutatedCopy.indexOf(9);
     if (index > -1) {
-        arrayWithout.splice(index, 1);
+        mutatedCopy.splice(index, 1);
     }
-    return arrayWithout;
+    return mutatedCopy;
 }
 
 function isSolvable(anArray) {
     let inversions = 0;
-    let anArrayWithoutEmpty = removeRandomEmpty(anArray);
-    for (let i = 0; i < anArrayWithoutEmpty.length; i++){
-        for (let j = i + 1; j < anArrayWithoutEmpty.length; j++) {
-            if ((anArrayWithoutEmpty[i] && anArrayWithoutEmpty[j]), anArrayWithoutEmpty[i] > anArrayWithoutEmpty[j]) {
+    let mutatedCopy = removeRandomEmpty(anArray);
+    for (let i = 0; i < mutatedCopy.length; i++){
+        for (let j = i + 1; j < mutatedCopy.length; j++) {
+            if ((mutatedCopy[i] && mutatedCopy[j]), mutatedCopy[i] > mutatedCopy[j]) {
                 inversions++;
             }
         }
@@ -35,16 +36,16 @@ function isSolvable(anArray) {
 
 // test passing
 export function getArrayOfRandomNumbers(array) {
-    let placementArray = [];
-    while (placementArray.length < array.length) {
+    let randomOrderArray = [];
+    while (randomOrderArray.length < array.length) {
         let randomNumber = Math.ceil(Math.random() * (array.length));
-        if (!placementArray.some(n => n === randomNumber)) {
-            placementArray.push(randomNumber);
+        if (!randomOrderArray.some(n => n === randomNumber)) {
+            randomOrderArray.push(randomNumber);
         }
     }
-    let testy = isSolvable(placementArray);
+    let testy = isSolvable(randomOrderArray);
     if (Number.isInteger(testy) === true){
-        return placementArray;
+        return randomOrderArray;
     } else {
         return getArrayOfRandomNumbers(array);
     }
@@ -66,26 +67,14 @@ movesEl.id = 'user-moves';
 movesEl.classList.add('animate__animated', 'animate__bounce');
 movesEl.textContent = 'Moves: ' + movesCount;
 
-const movementMap = {
-    9: [6, 8],
-    8: [5, 7, 9],
-    7: [4, 8],
-    6: [3, 5, 9],
-    5: [2, 4, 6, 8],
-    4: [1, 5, 7],
-    3: [2, 6],
-    2: [1, 3, 5],
-    1: [2, 4],
-};
-
 // test passing
 export function checkIfMovable(selectedTile, startStatus) {
     if (!startStatus) return false;
     
-    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
-    let tile = findById(localStorageEightData, selectedTile);
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
+    let tile = findById(tileObjects, selectedTile);
 
-    let emptyTile = findById(localStorageEightData, 9);
+    let emptyTile = findById(tileObjects, 9);
     let position = emptyTile.position;
     const moveable = movementMap[position];
 
@@ -98,26 +87,21 @@ export function checkIfMovable(selectedTile, startStatus) {
 
 // test passing
 export function moveTilesOnClick(selectedTile) {
-    const localStorageEightData = pullFromLocStorage(EIGHTDATA);
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
+    const selectedTileObject = findById(tileObjects, selectedTile);
 
-    let emptyTile = localStorageEightData.find(tile => tile.id === 9);
-
+    let emptyTile = tileObjects.find(tile => tile.id === 9);
     let emptyPosition = emptyTile.position;
-
-    const selectedTileObject = findById(localStorageEightData, selectedTile);
-
     let selectedPosition = selectedTileObject.position;
 
     emptyTile.position = selectedPosition;
-
     selectedTileObject.position = emptyPosition;
 
-    return localStorageEightData;
+    return tileObjects;
 }
 
 // tests passing
 export function checkWinCondition(newTiles) {
-
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
         let tile = newTiles.find(item => item.position === i);

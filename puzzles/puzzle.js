@@ -1,4 +1,4 @@
-import { generateThreeByThree, generatePuzzleInfo, startGame } from './puzzle-render-utils.js';
+import { generateTileMap, generatePuzzleInfo, startGame } from './puzzle-render-utils.js';
 import eightData from '../data/eight-data.js';
 import { setInLocStorage, EIGHTDATA } from '../common/utils.js';
 
@@ -12,6 +12,6 @@ startButton.addEventListener('click', startGame);
 
 setInLocStorage(EIGHTDATA, eightData);
 generatePuzzleInfo();
-generateThreeByThree();
+generateTileMap();
 
 
