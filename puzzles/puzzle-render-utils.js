@@ -9,9 +9,10 @@ import {
     checkIfMovable,
     updateAndSetUserMoves,
     checkWinCondition,
-    renderResults,
+    resultMessage,
     getArrayOfRandomNumbers,
-    clearUserMoves
+    clearUserMoves,
+    winOrLose
 } from '../puzzles/puzzle-utils.js';
 
 const spaces = makeArrayOfDivs(9);
@@ -67,9 +68,8 @@ function moveTileAndUpdate(tileData) {
         updateAndSetUserMoves();
         setInLocStorage(EIGHTDATA, newTiles);
         generateTileMap();
-
         if (solved === true) {
-            renderResults();
+            resultMessage(newTiles);
         }
     }
 }

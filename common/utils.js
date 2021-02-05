@@ -55,7 +55,6 @@ export function loadUserProfile() {
     solves.textContent = user.gamesWon;
 }
 
-
 const avatars = [
     {
         id: 'alan-turing',

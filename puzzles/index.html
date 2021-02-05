@@ -29,8 +29,9 @@
     </header>
 
     <main>
-        <section id="puzzle-info">
-            <!-- <h1 id="puzzle-name">
+        <section>
+            <section id="puzzle-info" class="info">
+                <!-- <h1 id="puzzle-name">
                 8 Puzzle
             </h1>
             <h2>About the 8 Puzzle</h2>
@@ -39,18 +40,21 @@
                     puzzle</a>. The goal is to slide the tiles around the board to line them up
                 sequentially from 1-8, with the empty space in the lower-left corner.
             </p> -->
-        </section>
-        <section id="tile-map">
-            <!-- inject tile map here -->
-        </section>
-        <section class="user-profile">
-            <img id="avatar">
-            <p>Name: <span id="user-name"></span></p>
-            <p>Moves: <span id="user-moves"></span><br></p>
-            <p>Solves: <span id="user-solves"></span></p>
-        </section>
-        <section id="results-display">
-            <!-- inject user results display here -->
+            </section>
+            <section id="tile-map" class="puzzle">
+                <!-- inject tile map here -->
+            </section>
+            <section class="user-profile">
+                <img id="avatar">
+                <div class="user-info">
+                    <p>Name: <span id="user-name"></span></p>
+                    <p>Moves: <span id="user-moves"></span><br></p>
+                    <p>Solves: <span id="user-solves"></span></p>
+                </div>
+            </section>
+            <section id="results-display" class="results">
+                <!-- inject user results display here -->
+            </section>
         </section>
     </main>
 
