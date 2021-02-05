@@ -5,7 +5,6 @@ body {
 	--color3: hsla(174, 59%, 56%, 1); /*medium-turquoise*/
 	--color4: hsla(166, 16%, 26%, 1); /*dark-slate-gray*/
 	--color5: hsla(0, 0%, 0%, 1); /*black*/
-
 	background-color: white;
 }
 
@@ -88,6 +87,7 @@ img {
 	grid-row: 2;
 	grid-column: 1;
 }
+
 
 .tile-map {
 	position: absolute;
