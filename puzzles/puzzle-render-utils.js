@@ -1,17 +1,20 @@
 import {
     setInLocStorage,
     pullFromLocStorage,
-    EIGHTDATA
+    EIGHTDATA,
 } from '../common/utils.js';
 import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
 import {
     moveTilesOnClick,
     checkIfMovable,
-    updateAndSetUserMoves,
+    updateUserProfileMoves,
     checkWinCondition,
     resultMessage,
     getArrayOfRandomNumbers,
     clearUserMoves,
+    setUserMoves,
+    setUserSolves,
+    updateUserProfileSolves,
 } from '../puzzles/puzzle-utils.js';
 
 const spaces = makeArrayOfDivs(9);
@@ -64,10 +67,13 @@ function moveTileAndUpdate(tileData) {
     if (checkIfMovable(selectedTile, clickedStart) === true) {
         const newTiles = moveTilesOnClick(selectedTile);
         let solved = checkWinCondition(newTiles);
-        updateAndSetUserMoves();
+        updateUserProfileMoves();
+        setUserMoves();
         setInLocStorage(EIGHTDATA, newTiles);
         generateTileMap();
         if (solved === true) {
+            updateUserProfileSolves();
+            setUserSolves();
             resultMessage(newTiles);
         }
     }

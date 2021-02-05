@@ -3,12 +3,14 @@ import {
     setInLocStorage,
     pullFromLocStorage,
     EIGHTDATA,
-    USER
+    USER,
+    findByName,
+    avatars
 } from '../common/utils.js';
 
 import { movementMap } from '../data/eight-data.js';
 
-let user = pullFromLocStorage(USER);
+export let user = pullFromLocStorage(USER);
 
 function removeRandomEmpty(anArray) {
     let mutatedCopy = anArray.slice();
@@ -53,12 +55,8 @@ export function getArrayOfRandomNumbers(array) {
 }
 
 // GENERATED RESULTS DOM ELEMENTS //
-let movesCount = 0;
-
-const movesEl = document.createElement('p');
-movesEl.id = 'user-moves';
-movesEl.classList.add('animate__animated', 'animate__bounce');
-movesEl.textContent = 'Moves: ' + movesCount;
+export let movesCount = 0;
+export let solvedCount = 0;
 
 // test passing
 export function checkIfMovable(selectedTile, startStatus) {
@@ -108,16 +106,33 @@ export function checkWinCondition(newTiles) {
     return condition;
 }
 
-export function updateAndSetUserMoves() {
-    movesCount++;
-    movesEl.textContent = 'Moves: ' + movesCount;
+export function setUserMoves() {
     user.moves++;
     setInLocStorage(USER, user);
 }
 
+export function setUserSolves() {
+    user.gamesWon++;
+    setInLocStorage(USER, user);
+}
+
+export function updateUserProfileMoves() {
+    movesCount++;
+    const moves = document.getElementById('user-moves');
+
+    moves.textContent = movesCount;
+}
+
+export function updateUserProfileSolves() {
+    solvedCount++;
+
+    const solves = document.getElementById('user-solves');
+    solves.textContent = solvedCount;
+}
+
 export function clearUserMoves() {
     movesCount = 0;
-    movesEl.textContent = 'Moves: ' + movesCount;
+    moves.textContent = 'Moves: ' + movesCount;
     user.moves = 0;
     setInLocStorage(USER, user);
 }
@@ -145,15 +160,23 @@ export function resultMessage(newTiles) {
     });
 
     if (winState === true) {
-        user.gamesWon++;
         winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
     }
     else {
         winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
     }
 
-    setInLocStorage(USER, user);
-
     resultsContainer.append(winLoseMessageEl);
     return winLoseMessageEl;
+}
+
+export function loadUserProfile() {
+    const name = document.getElementById('user-name');
+    const avatar = document.getElementById('avatar');
+
+    const user = pullFromLocStorage(USER);
+
+    name.textContent = 'Name: ' + user.name;
+    avatar.src = findByName(avatars, user.avatar);
+
 }
