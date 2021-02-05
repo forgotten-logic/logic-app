@@ -14,9 +14,8 @@ import {
     clearUserMoves,
 } from '../puzzles/puzzle-utils.js';
 
-const spaces = makeArrayOfDivs(9);
-
 // create a grid of nine squares on which the tiles will move
+const spaces = makeArrayOfDivs(9);
 export function generateTileMap() {
     const tileMap = document.getElementById('tile-map');
     tileMap.classList.add('tile-map');
@@ -49,8 +48,7 @@ function makeArrayOfDivs(quantity) {
     return divArray;
 }
 
-// get 8 numbered tiles and 1 empty; returns an array of tiles
-
+// clear out current tiles
 function removeOldTiles() {
     const oldTiles = document.querySelectorAll('.tile');
     for (let tile of oldTiles) {
@@ -58,9 +56,10 @@ function removeOldTiles() {
     }
 }
 
+// tile movement effects for tile click event
 function moveTileAndUpdate(tileData) {
     const selectedTile = tileData.id;
-    // maybe add 'clickedStart' argument here
+    
     if (checkIfMovable(selectedTile, clickedStart) === true) {
         const newTiles = moveTilesOnClick(selectedTile);
         let solved = checkWinCondition(newTiles);
@@ -73,6 +72,7 @@ function moveTileAndUpdate(tileData) {
     }
 }
 
+// get 8 numbered tiles and 1 empty; returns an array of tiles
 export function generatePlayableTiles() {
     removeOldTiles();
     const tiles = makeArrayOfDivs(9);

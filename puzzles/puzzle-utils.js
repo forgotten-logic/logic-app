@@ -10,6 +10,7 @@ import { movementMap } from '../data/eight-data.js';
 
 let user = pullFromLocStorage(USER);
 
+// clear 'empty' tile with ID 9 from array for use with solve testing
 function removeRandomEmpty(anArray) {
     let mutatedCopy = anArray.slice();
 
@@ -20,6 +21,7 @@ function removeRandomEmpty(anArray) {
     return mutatedCopy;
 }
 
+// test if generated array will be solvable
 function isSolvable(anArray) {
     let inversions = 0;
     let mutatedCopy = removeRandomEmpty(anArray);
@@ -34,7 +36,7 @@ function isSolvable(anArray) {
     return evenInversions;
 }
 
-// test passing
+// get array of numbers to guide placement of tiles
 export function getArrayOfRandomNumbers(array) {
     let randomOrderArray = [];
     while (randomOrderArray.length < array.length) {
@@ -60,7 +62,7 @@ movesEl.id = 'user-moves';
 movesEl.classList.add('animate__animated', 'animate__bounce');
 movesEl.textContent = 'Moves: ' + movesCount;
 
-// test passing
+// check if a clicked tile can be moved
 export function checkIfMovable(selectedTile, startStatus) {
     if (!startStatus) return false;
 
@@ -78,7 +80,7 @@ export function checkIfMovable(selectedTile, startStatus) {
     }
 }
 
-// test passing
+// tile movement function
 export function moveTilesOnClick(selectedTile) {
     const tileObjects = pullFromLocStorage(EIGHTDATA);
     const selectedTileObject = findById(tileObjects, selectedTile);
@@ -93,7 +95,7 @@ export function moveTilesOnClick(selectedTile) {
     return tileObjects;
 }
 
-// tests passing
+// check if tiles are in solved position
 export function checkWinCondition(newTiles) {
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
