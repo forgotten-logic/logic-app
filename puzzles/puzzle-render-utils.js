@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 import eightData from '../data/eight-data.js';
 import { setInLocStorage, pullFromLocStorage, findById } from '../common/utils.js';
 import { eightPuzzle, fifteenPuzzle, masterPuzzleInfo, wikiLink } from '../data/puzzle-info.js';
+=======
+import { 
+    setInLocStorage,
+    pullFromLocStorage, 
+    EIGHTDATA
+} from '../common/utils.js';
+import { eightPuzzle, wikiLink } from '../data/puzzle-info.js';
+>>>>>>> d4460e676234ab88d6c296725418e0cd79e8c4b9
 import {
     moveTilesOnClick,
     checkIfMovable,
@@ -11,39 +20,14 @@ import {
     clearUserMoves
 } from '../puzzles/puzzle-utils.js';
 
-const EIGHTDATA = 'EIGHTDATA';
-
-setInLocStorage(EIGHTDATA, eightData);
-
-// tile grid constants
-const tileMap = document.getElementById('tile-map');
-tileMap.classList.add('tile-map');
-
-const pos1 = document.createElement('div');
-const pos2 = document.createElement('div');
-const pos3 = document.createElement('div');
-const pos4 = document.createElement('div');
-const pos5 = document.createElement('div');
-const pos6 = document.createElement('div');
-const pos7 = document.createElement('div');
-const pos8 = document.createElement('div');
-const pos9 = document.createElement('div');
-
-const spaces = [
-    pos1,
-    pos2,
-    pos3,
-    pos4,
-    pos5,
-    pos6,
-    pos7,
-    pos8,
-    pos9
-];
+const spaces = makeArrayOfDivs(9);
 
 // create a grid of nine squares on which the tiles will move
-export function generateThreeByThree() {
-    const tiles = generateEightTiles();
+export function generateTileMap() {
+    const tileMap = document.getElementById('tile-map');
+    tileMap.classList.add('tile-map');
+    const tiles = generatePlayableTiles();
+    
     for (let i = 0; i < spaces.length; i++) {
         spaces[i].classList.add('space');
         spaces[i].id = `pos-${i + 1}`;
@@ -54,22 +38,49 @@ export function generateThreeByThree() {
 }
 
 // click handler for start/shuffle button
-const startButton = document.createElement('button');
 let clickedStart = false;
 export function startGame() {
+    const startButton = document.querySelector('.start');
     clickedStart = true;
     clearUserMoves();
     placeTilesRandomly();
     startButton.textContent = 'Shuffle tiles and start again?';
 }
 
+function makeArrayOfDivs(quantity) {
+    let divArray = [];
+    for (let i = 0; i < quantity; i++) {
+        divArray.push(document.createElement('div'));
+    }
+    return divArray;
+}
+
 // get 8 numbered tiles and 1 empty; returns an array of tiles
-export function generateEightTiles() {
+
+function removeOldTiles() {
     const oldTiles = document.querySelectorAll('.tile');
     for (let tile of oldTiles) {
         tile.remove();
     }
+}
 
+function moveTileAndUpdate(tileData) {
+    const selectedTile = tileData.id;
+	// maybe add 'clickedStart' argument here
+    if (checkIfMovable(selectedTile, clickedStart) === true) {
+        const newTiles = moveTilesOnClick(selectedTile);
+        let solved = checkWinCondition(newTiles);
+        updateAndSetUserMoves();
+        setInLocStorage(EIGHTDATA, newTiles);
+        generateTileMap();
+		
+        if (solved === true) {
+            renderResults();
+        }
+    }
+}
+
+<<<<<<< HEAD
     // make the tile divs
     const tile1 = document.createElement('div');
     const tile2 = document.createElement('div');
@@ -96,9 +107,17 @@ export function generateEightTiles() {
 
     const localStorageEightData = pullFromLocStorage(EIGHTDATA);
 
+=======
+export function generatePlayableTiles() {
+    removeOldTiles();
+    const tiles = makeArrayOfDivs(9);
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
+    
+>>>>>>> d4460e676234ab88d6c296725418e0cd79e8c4b9
     // loop through tiles and add properties and functionality
-    for (let i = 0; i < localStorageEightData.length; i++) {
-        const tileData = localStorageEightData.find(item => item.position === i + 1);
+    for (let i = 0; i < tileObjects.length; i++) {
+        
+        const tileData = tileObjects.find(item => item.position === i + 1);
 
         if (!tileData.isEmpty) {
             tiles[i].classList.add('tile');
@@ -107,6 +126,7 @@ export function generateEightTiles() {
 
             // on-click behavior for non-empty tiles
             tiles[i].addEventListener('click', () => {
+<<<<<<< HEAD
                 const selectedTile = tileData.id;
                 // add 'clickedStart' argument here
                 if (checkIfMovable(selectedTile, clickedStart) === true) {
@@ -120,6 +140,9 @@ export function generateEightTiles() {
                         renderResults();
                     }
                 }
+=======
+                moveTileAndUpdate(tileData);
+>>>>>>> d4460e676234ab88d6c296725418e0cd79e8c4b9
             });
         }
     }
@@ -143,23 +166,33 @@ export function generatePuzzleInfo() {
 
 export function placeTilesRandomly() {
     // get the array of tile objects from localStorage
-    const tileObjects = JSON.parse(localStorage.getItem(EIGHTDATA));
+    const tileObjects = pullFromLocStorage(EIGHTDATA);
 
     // get an array like [2, 6, 3, 5, 7, 1, 4, 9, 8]
+<<<<<<< HEAD
     const placements = getArrayOfRandomNumbers(tileObjects);
 
+=======
+    const tileOrder = getArrayOfRandomNumbers(tileObjects);
+    
+>>>>>>> d4460e676234ab88d6c296725418e0cd79e8c4b9
     // make an array of tile objects with positions updated to reflect the random array
-    let placedTiles = [];
-    for (let i = 0; i < placements.length; i++) {
-        const tileObject = tileObjects.find(tile => tile.id === placements[i]);
+    let orderedTiles = [];
+    for (let i = 0; i < tileOrder.length; i++) {
+        const tileObject = tileObjects.find(tile => tile.id === tileOrder[i]);
         tileObject.position = i + 1;
-        placedTiles.push(tileObject);
+        orderedTiles.push(tileObject);
     }
 
     // set shuffled tile positions in local storage
-    localStorage.setItem(EIGHTDATA, JSON.stringify(placedTiles));
+    setInLocStorage(EIGHTDATA, orderedTiles);
 
     // generate the grid with the updated position data
+<<<<<<< HEAD
     generateThreeByThree();
 }
 
+=======
+    generateTileMap();
+} 
+>>>>>>> d4460e676234ab88d6c296725418e0cd79e8c4b9
