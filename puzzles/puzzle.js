@@ -1,7 +1,5 @@
 import { generateTileMap, generatePuzzleInfo, startGame } from './puzzle-render-utils.js';
 import {
-    // movesCount, 
-    // solvedCount, 
     loadUserProfile
 } from './puzzle-utils.js';
 import eightData from '../data/eight-data.js';

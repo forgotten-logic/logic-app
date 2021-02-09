@@ -57,7 +57,7 @@ export const avatars = [
     {
         id: 'margaret-hamilton',
         name: 'Margaret Hamilton',
-        avatar: '../assets/avatars/Margaret_Hamilton.gif'
+        avatar: '../assets/avatars/margaret_hamilton.jpg'
     },
     {
         id: 'albert-einstein',
