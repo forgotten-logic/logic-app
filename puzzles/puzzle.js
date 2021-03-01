@@ -5,6 +5,7 @@ import {
     loadUserProfile
 } from './puzzle-utils.js';
 import eightData from '../data/eight-data.js';
+// nice use of an app constant here
 import { setInLocStorage, EIGHTDATA } from '../common/utils.js';
 
 loadUserProfile();

@@ -34,6 +34,7 @@ export function generateTileMap() {
 }
 
 // click handler for start/shuffle button
+// smart piece of global state here
 let clickedStart = false;
 export function startGame() {
     const startButton = document.querySelector('.start');
@@ -55,6 +56,7 @@ function makeArrayOfDivs(quantity) {
 function removeOldTiles() {
     const oldTiles = document.querySelectorAll('.tile');
     for (let tile of oldTiles) {
+        // nice work using new DOM methods!
         tile.remove();
     }
 }
@@ -63,14 +65,14 @@ function removeOldTiles() {
 function moveTileAndUpdate(tileData) {
     const selectedTile = tileData.id;
     
-    if (checkIfMovable(selectedTile, clickedStart) === true) {
+    if (checkIfMovable(selectedTile, clickedStart)) {
         const newTiles = moveTilesOnClick(selectedTile);
         let solved = checkWinCondition(newTiles);
         updateUserProfileMoves();
         setUserMoves();
         setInLocStorage(EIGHTDATA, newTiles);
         generateTileMap();
-        if (solved === true) {
+        if (solved) {
             updateUserProfileSolves();
             setUserSolves();
             resultMessage(newTiles);
@@ -90,12 +92,14 @@ export function generatePlayableTiles() {
         const tileData = tileObjects.find(item => item.position === i + 1);
 
         if (!tileData.isEmpty) {
-            tiles[i].classList.add('tile');
-            tiles[i].id = tileData.id;
-            tiles[i].textContent = tileData.id;
+            const tile = tiles[i];
+            tile.classList.add('tile');
+            tile.id = tileData.id;
+            tile.textContent = tileData.id;
 
             // on-click behavior for non-empty tiles
-            tiles[i].addEventListener('click', () => {
+            tile.addEventListener('click', () => {
+                // this is so well organized--great work refactoring the event handler out like thi
                 moveTileAndUpdate(tileData);
             });
         }

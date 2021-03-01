@@ -26,6 +26,7 @@ test('It should return an array of random numbers equal to the length of the giv
 
     // check that all values lower than length of given
     const expected2 = true;
+    // such a cool test--nice work!
     const actual2 = generatedArray.every(n => n <= testArray.length);
 
     // check that no numbers are equal to each other
@@ -40,9 +41,84 @@ test('It should return an array of random numbers equal to the length of the giv
 // test checkWinCondition
 test('It should return false when provided a set of tiles whose id property and position property are not the same number; it should return true if those properties do match for all tiles', (expect) => {
     
-    const tiles1 = [{ 'id':7, 'position':1 }, { 'id':1, 'position':2 }, { 'id':3, 'position':3 }, { 'id':8, 'position':4 }, { 'id':9, 'isEmpty':true, 'position':5 }, { 'id':2, 'position':6 }, { 'id':5, 'position':7 }, { 'id':6, 'position':8 }, { 'id':4, 'position':9 }];
+    // this is a really great test suite! I would have liked to see the data lain out in a more readable format (like so), since tests also count as documentation for future developers to understand how your functions work
+    const tiles1 = [
+        { 
+            'id':7, 
+            'position':1,
+        },
+        { 
+            'id':1,
+            'position':2
+        },
+        { 
+            'id':3,
+            'position':3
+        },
+        { 
+            'id':8,
+            'position':4
+        },
+        { 
+            'id':9,
+            'isEmpty':true,
+            'position':5
+        },
+        { 
+            'id':2,
+            'position':6
+        },
+        { 
+            'id':5,
+            'position':7
+        },
+        { 
+            'id':6,
+            'position':8
+        },
+        { 
+            'id':4,
+            'position':9
+        }];
 
-    const tiles2 = [{ 'id':1, 'position':1 }, { 'id':2, 'position':2 }, { 'id':3, 'position':3 }, { 'id':4, 'position':4 }, { 'id':5, 'position':5 }, { 'id':6, 'position':6 }, { 'id':7, 'position':7 }, { 'id':8, 'position':8 }, { 'id':9, 'isEmpty':true, 'position':9 }];
+    const tiles2 = [
+        { 
+            'id':1,
+            'position':1
+        },
+        { 
+            'id':2,
+            'position':2
+        },
+        { 
+            'id':3,
+            'position':3
+        },
+        { 
+            'id':4,
+            'position':4
+        },
+        { 
+            'id':5,
+            'position':5
+        },
+        { 
+            'id':6,
+            'position':6
+        },
+        { 
+            'id':7,
+            'position':7
+        },
+        { 
+            'id':8,
+            'position':8
+        },
+        { 
+            'id':9,
+            'isEmpty':true,
+            'position':9,
+        }];
 
     const expected1 = false;
     const actual1 = checkWinCondition(tiles1);

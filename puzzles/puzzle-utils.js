@@ -1,3 +1,5 @@
+// loving all these util functions. it might have made sense to separate them into different files, since you have so many, but this is some really intelligent modularity!
+
 import {
     findById,
     setInLocStorage,
@@ -13,6 +15,7 @@ import { movementMap } from '../data/eight-data.js';
 export let user = pullFromLocStorage(USER);
 
 // clear 'empty' tile with ID 9 from array for use with solve testing
+// very cool function!
 function removeRandomEmpty(anArray) {
     let mutatedCopy = anArray.slice();
 
@@ -28,6 +31,7 @@ function isSolvable(anArray) {
     let inversions = 0;
     let mutatedCopy = removeRandomEmpty(anArray);
     for (let i = 0; i < mutatedCopy.length; i++) {
+        // this is a really amazing piece of logic. great work on puzzling through this!
         for (let j = i + 1; j < mutatedCopy.length; j++) {
             if ((mutatedCopy[i] && mutatedCopy[j]), mutatedCopy[i] > mutatedCopy[j]) {
                 inversions++;
@@ -43,16 +47,17 @@ export function getArrayOfRandomNumbers(array) {
     let randomOrderArray = [];
     while (randomOrderArray.length < array.length) {
         let randomNumber = Math.ceil(Math.random() * (array.length));
+        // nice digging to find this array method! Seems like you could have used a new Set() to ensure uniqueness
         if (!randomOrderArray.some(n => n === randomNumber)) {
             randomOrderArray.push(randomNumber);
         }
     }
+    // this could use a more readable name
     let testy = isSolvable(randomOrderArray);
-    if (Number.isInteger(testy) === true) {
-        return randomOrderArray;
-    } else {
-        return getArrayOfRandomNumbers(array);
-    }
+
+    return Number.isInteger(testy) 
+        ? randomOrderArray 
+        : getArrayOfRandomNumbers(array);
 
 }
 
@@ -72,11 +77,7 @@ export function checkIfMovable(selectedTile, startStatus) {
     let position = emptyTile.position;
     const moveable = movementMap[position];
 
-    if (moveable.includes(tile.position)) {
-        return true;
-    } else {
-        return false;
-    }
+    return moveable.includes(tile.position);
 }
 
 // tile movement function
@@ -84,7 +85,7 @@ export function moveTilesOnClick(selectedTile) {
     const tileObjects = pullFromLocStorage(EIGHTDATA);
     const selectedTileObject = findById(tileObjects, selectedTile);
 
-    let emptyTile = tileObjects.find(tile => tile.id === 9);
+    let emptyTile = tileObjects.find(tile => tile.id === 9); // nice!
     let emptyPosition = emptyTile.position;
     let selectedPosition = selectedTileObject.position;
 
@@ -98,9 +99,10 @@ export function moveTilesOnClick(selectedTile) {
 export function checkWinCondition(newTiles) {
     let condition = false;
     for (let i = 1; i < newTiles.length + 1; i++) {
+        // very cool use of the fund function
         let tile = newTiles.find(item => item.position === i);
         if (tile.position !== tile.id) {
-            condition = false;
+            // no need to reassign the local variable if you're going to return here
             return false;
         } else {
             condition = true;
@@ -140,10 +142,8 @@ export function clearUserMoves() {
 }
 
 export function winOrLose(newTiles) {
-    if (checkWinCondition(newTiles) === true) {
-        return true;
-    }
-    else false; // currently not linked to any action/result - need to update to trigger; to be used with future 'give up' button feature //
+    // kind of seems like this is just a passthrough for your checkWinCondition function
+    return checkWinCondition(newTiles);
 }
 
 export function resultMessage(newTiles) {
@@ -156,15 +156,15 @@ export function resultMessage(newTiles) {
     // ANIMATION FOR WIN/LOSE MESSAGE //
     winLoseMessageEl.style.display = 'flex';
     winLoseMessageEl.classList.add('animate__animated', 'animate__zoomInUp', 'animate__slow');
+    // wow, super cool! i've never seen this event listener. Looks like this listens for CSS animations? Great find!
     winLoseMessageEl.addEventListener('animationend', () => {
         winLoseMessageEl.classList.remove('animate__zoomInUp');
         winLoseMessageEl.classList.add('animate__delay-2s', 'animate__hinge');
     });
 
-    if (winState === true) {
+    if (winState) {
         winLoseMessageEl.textContent = `Yahoo!!! Congrats, ${user.name}! You solved this puzzle in ${movesCount} moves!`;
-    }
-    else {
+    } else {
         winLoseMessageEl.textContent = `Awww, bummer! You couldn't solve the puzzle. Better luck next time, ${user.name}!`;
     }
 
