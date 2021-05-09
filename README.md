@@ -1,5 +1,4 @@
 # Forgotten-Logic
-Final project for Alchemy Code Lab: Foundations I
 
 ## The Team
 - [Vance Mills](https://github.com/Vance-M)
