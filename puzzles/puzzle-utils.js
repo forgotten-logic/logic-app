@@ -182,4 +182,3 @@ export function loadUserProfile() {
     avatar.src = findByName(avatars, user.avatar);
 
 }
->>>>>>> bc43674b9b4537a6a0559c15213da24ffb71654b
